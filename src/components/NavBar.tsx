@@ -38,7 +38,7 @@ export default function NavBar() {
             <Link
               key={name}
               href={href}
-              onClick={() => setActive(name)}
+              onClick={() => setActive(active === name ? null : name)}
               className={`group relative flex items-center justify-center text-sm text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition ${
                 active === name ? 'text-blue-600 dark:text-blue-400' : ''
               }`}
