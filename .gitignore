@@ -1,0 +1,12 @@
+# Node
+node_modules
+npm-debug.log
+
+# Next.js
+.next
+out
+.DS_Store
+
+# Local settings
+.env
+*.local
