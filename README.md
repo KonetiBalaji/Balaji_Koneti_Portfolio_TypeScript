@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Balaji.dev – Portfolio
 
-## Getting Started
+A modern, Apple-inspired portfolio built with Next.js, TypeScript, and Tailwind CSS. This project demonstrates a full transformation from a basic template to a visually unified, professional, and industry-standard portfolio.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Before & After
+
+| Before (Sprint_1) | After (Current) |
+|-------------------|----------------|
+| ![Hero Before](Sprint_1/hero.png) | ![Hero After](public/hero_after.png) |
+| ![About Before](Sprint_1/about.png) | ![About After](public/about_after.png) |
+| ![Skills Before](Sprint_1/skills.png) | ![Skills After](public/skills_after.png) |
+| ![Projects Before](Sprint_1/projects.png) | ![Projects After](public/projects_after.png) |
+| ![Education Before](Sprint_1/education.png) | ![Education After](public/education_after.png) |
+| ![Work Before](Sprint_1/workexperience.png) | ![Work After](public/work_after.png) |
+| ![Contact Before](Sprint_1/contact.png) | ![Contact After](public/contact_after.png) |
+| ![Dark Mode Before](Sprint_1/dark_mode_landing.png) | ![Dark Mode After](public/dark_mode_after.png) |
+
+---
+
+## 🗂️ Project Structure
+
+```
+.
+├── public/
+│   └── profile.jpg, [after images]
+├── src/
+│   ├── app/
+│   ├── components/
+│   ├── styles/
+│   └── ...
+├── Sprint_1/
+│   └── [before images]
+├── tailwind.config.js
+├── package.json
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ How to Run
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+2. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+3. **Open [http://localhost:3000](http://localhost:3000) in your browser.**
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## ✨ Section-by-Section Improvements
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Hero Section
+- **Before:** ![Hero Before](Sprint_1/hero.png)
+- **After:** ![Hero After](public/hero_after.png)
+- **Changes:**  
+  - Centered layout, larger profile image, animated gradient ring, Apple-style typography, animated intro text.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### About Section
+- **Before:** ![About Before](Sprint_1/about.png)
+- **After:** ![About After](public/about_after.png)
+- **Changes:**  
+  - Unified card/tag styles, improved spacing, modern Apple-inspired look.
 
-## Deploy on Vercel
+### Skills Section
+- **Before:** ![Skills Before](Sprint_1/skills.png)
+- **After:** ![Skills After](public/skills_after.png)
+- **Changes:**  
+  - Consistent card/tag styles, gradient overlays, hover effects, unified with Projects section.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Projects Section
+- **Before:** ![Projects Before](Sprint_1/projects.png)
+- **After:** ![Projects After](public/projects_after.png)
+- **Changes:**  
+  - Apple-style cards, gradient overlays, smooth hover, unified tag/button styles, clickable project titles/icons.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Education Section
+- **Before:** ![Education Before](Sprint_1/education.png)
+- **After:** ![Education After](public/education_after.png)
+- **Changes:**  
+  - Card-based layout, gradient overlays, unified tag styles, expand/collapse transitions.
+
+### Work Experience Section
+- **Before:** ![Work Before](Sprint_1/workexperience.png)
+- **After:** ![Work After](public/work_after.png)
+- **Changes:**  
+  - Card-based layout, gradient overlays, unified tag styles, expand/collapse transitions.
+
+### Contact Section
+- **Before:** ![Contact Before](Sprint_1/contact.png)
+- **After:** ![Contact After](public/contact_after.png)
+- **Changes:**  
+  - Minimal, clean, prominent call-to-action, gradient button, unified button size and style.
+
+### NavBar & Footer
+- **Before:** ![Dark Mode Before](Sprint_1/dark_mode_landing.png)
+- **After:** ![Dark Mode After](public/dark_mode_after.png)
+- **Changes:**  
+  - Fixed, minimal NavBar, animated underline, accessible, responsive hamburger menu, consistent accent color, minimal footer.
+
+---
+
+## 🧑‍💻 Tech Stack
+
+- Next.js 15
+- TypeScript
+- Tailwind CSS 4
+- Framer Motion
+- next-themes (dark mode)
+- Lucide React Icons
+
+---
+
+## 🙏 Credits & Inspiration
+
+- Inspired by Apple.com, Vercel, and top industry portfolios.
+
+---
+
+**Clone, run, and enjoy a truly modern, Apple-inspired portfolio!**
