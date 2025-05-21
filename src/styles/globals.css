@@ -31,8 +31,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-}
-
-body {
+}body {
   @apply bg-white text-black dark:bg-black dark:text-white;
 }
+
