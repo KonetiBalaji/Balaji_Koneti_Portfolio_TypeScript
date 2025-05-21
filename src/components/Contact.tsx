@@ -12,7 +12,7 @@ export default function Contact() {
 
       <p className="text-base text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
         I&apos;m always open to exciting collaborations, new roles, or tech conversations.
-        Let's connect, share ideas, and create something impactful together.
+        Let&apos;s connect, share ideas, and create something impactful together.
       </p>
 
       <a
