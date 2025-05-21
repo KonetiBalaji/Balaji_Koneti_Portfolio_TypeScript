@@ -8,14 +8,14 @@ A modern, Apple-inspired portfolio built with Next.js, TypeScript, and Tailwind 
 
 | Before (Sprint_1) | After (Current) |
 |-------------------|----------------|
-| ![Hero Before](Sprint_1/hero.png) | ![Hero After](Sprint_4/hero_after.png) |
-| ![About Before](Sprint_1/about.png) | ![About After](Sprint_4/about_after.png) |
-| ![Skills Before](Sprint_1/skills.png) | ![Skills After](Sprint_4/skills_after.png) |
-| ![Projects Before](Sprint_1/projects.png) | ![Projects After](Sprint_4/projects_after.png) |
-| ![Education Before](Sprint_1/education.png) | ![Education After](Sprint_4/education_after.png) |
-| ![Work Before](Sprint_1/workexperience.png) | ![Work After](Sprint_4/work_after.png) |
-| ![Contact Before](Sprint_1/contact.png) | ![Contact After](Sprint_4/contact_after.png) |
-| ![Dark Mode Before](Sprint_1/dark_mode_landing.png) | ![Dark Mode After](Sprint_4/dark_mode_after.png) |
+| ![Hero Before](Sprint_1/hero.png) | ![Hero After](Sprint_4/hero.png) |
+| ![About Before](Sprint_1/about.png) | ![About After](Sprint_4/about.png) |
+| ![Skills Before](Sprint_1/skills.png) | ![Skills After](Sprint_4/skills.png) |
+| ![Projects Before](Sprint_1/projects.png) | ![Projects After](Sprint_4/projects.png) |
+| ![Education Before](Sprint_1/education.png) | ![Education After](Sprint_4/education.png) |
+| ![Work Before](Sprint_1/workexperience.png) | ![Work After](Sprint_4/work.png) |
+| ![Contact Before](Sprint_1/contact.png) | ![Contact After](Sprint_4/contact.png) |
+| ![Dark Mode Before](Sprint_1/dark_mode_landing.png) | ![Dark Mode After](Sprint_4/dark_mode.png) |
 
 ---
 
@@ -57,49 +57,49 @@ A modern, Apple-inspired portfolio built with Next.js, TypeScript, and Tailwind 
 
 ### Hero Section
 - **Before:** ![Hero Before](Sprint_1/hero.png)
-- **After:** ![Hero After](Sprint_4/hero_after.png)
+- **After:** ![Hero After](Sprint_4/hero.png)
 - **Changes:**  
   - Centered layout, larger profile image, animated gradient ring, Apple-style typography, animated intro text.
 
 ### About Section
 - **Before:** ![About Before](Sprint_1/about.png)
-- **After:** ![About After](Sprint_4/about_after.png)
+- **After:** ![About After](Sprint_4/about.png)
 - **Changes:**  
   - Unified card/tag styles, improved spacing, modern Apple-inspired look.
 
 ### Skills Section
 - **Before:** ![Skills Before](Sprint_1/skills.png)
-- **After:** ![Skills After](Sprint_4/skills_after.png)
+- **After:** ![Skills After](Sprint_4/skills.png)
 - **Changes:**  
   - Consistent card/tag styles, gradient overlays, hover effects, unified with Projects section.
 
 ### Projects Section
 - **Before:** ![Projects Before](Sprint_1/projects.png)
-- **After:** ![Projects After](Sprint_4/projects_after.png)
+- **After:** ![Projects After](Sprint_4/projects.png)
 - **Changes:**  
   - Apple-style cards, gradient overlays, smooth hover, unified tag/button styles, clickable project titles/icons.
 
 ### Education Section
 - **Before:** ![Education Before](Sprint_1/education.png)
-- **After:** ![Education After](Sprint_4/education_after.png)
+- **After:** ![Education After](Sprint_4/education.png)
 - **Changes:**  
   - Card-based layout, gradient overlays, unified tag styles, expand/collapse transitions.
 
 ### Work Experience Section
 - **Before:** ![Work Before](Sprint_1/workexperience.png)
-- **After:** ![Work After](Sprint_4/work_after.png)
+- **After:** ![Work After](Sprint_4/work.png)
 - **Changes:**  
   - Card-based layout, gradient overlays, unified tag styles, expand/collapse transitions.
 
 ### Contact Section
 - **Before:** ![Contact Before](Sprint_1/contact.png)
-- **After:** ![Contact After](Sprint_4/contact_after.png)
+- **After:** ![Contact After](Sprint_4/contact.png)
 - **Changes:**  
   - Minimal, clean, prominent call-to-action, gradient button, unified button size and style.
 
 ### NavBar & Footer
 - **Before:** ![Dark Mode Before](Sprint_1/dark_mode_landing.png)
-- **After:** ![Dark Mode After](Sprint_4/dark_mode_after.png)
+- **After:** ![Dark Mode After](Sprint_4/dark_mode.png)
 - **Changes:**  
   - Fixed, minimal NavBar, animated underline, accessible, responsive hamburger menu, consistent accent color, minimal footer.
 
