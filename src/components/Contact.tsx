@@ -11,8 +11,8 @@ export default function Contact() {
       <h2 className="text-3xl font-bold mb-10 text-left">Get in Touch</h2>
 
       <p className="text-base text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-        I&apos;m always open to exciting collaborations, new roles, or tech conversations.
-        Let&apos;s connect, share ideas, and create something impactful together.
+        I am always open to exciting collaborations, new roles, or tech conversations.
+        Let us connect, share ideas, and create something impactful together.
       </p>
 
       <a
