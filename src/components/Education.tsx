@@ -35,122 +35,94 @@ export const educationData = [
   },
 ];
 
+const isMobile = () =>
+  typeof window !== "undefined" && window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+
 const Education = () => {
-  const [hoveredItemId, setHoveredItemId] = useState<string | null>(null);
-  const [expandedItems, setExpandedItems] = useState<string[]>([]);
+  const [expanded, setExpanded] = useState<string | null>(null);
 
-  const handleToggle = (id: string) => {
-    setExpandedItems((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
+  const handleExpand = (id: string) => {
+    if (isMobile()) {
+      setExpanded(expanded === id ? null : id);
+    }
   };
-
-  const isExpanded = (id: string) => expandedItems.includes(id);
 
   return (
     <section
       id="education"
-      className="px-6 py-20 max-w-5xl mx-auto"
-      onMouseEnter={() => setHoveredItemId("education-section")}
-      onMouseLeave={() => setHoveredItemId(null)}
+      className="px-6 py-12 max-w-5xl mx-auto bg-white dark:bg-black"
     >
-      <div className="flex items-center justify-between mb-12">
-        <h2 className="text-3xl font-bold text-left text-gray-900 dark:text-white">
-          Education
-        </h2>
-        <div className="relative">
-          <button
-            className={`text-gray-500 text-sm bg-transparent px-2 py-1 rounded-full transition-opacity duration-200 border border-gray-300 dark:border-gray-700 ${
-              hoveredItemId === "education-section"
-                ? "opacity-100"
-                : "opacity-0"
-            }`}
-            onMouseEnter={() => setHoveredItemId("expand-all-icon")}
-            onMouseLeave={() => setHoveredItemId("education-section")}
-            onClick={() =>
-              setExpandedItems((prev) =>
-                prev.length === educationData.length
-                  ? []
-                  : educationData.map((item) => item.id)
-              )
-            }
-          >
-            +
-          </button>
-          {hoveredItemId === "expand-all-icon" && (
-            <div className="absolute right-0 top-full mt-1 bg-transparent text-gray-500 text-xs px-2 py-1 rounded-md transition-opacity duration-200">
-              Expand All
-            </div>
-          )}
-        </div>
-      </div>
-
-      <div className="space-y-10">
+      <h2 className="text-3xl font-bold mb-10 text-gray-900 dark:text-white text-left">
+        Education
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {educationData.map((item) => (
-          <div key={item.id} className="group transition-all">
-            <div className="flex justify-between items-start">
-              <div className="flex items-center">
-                {item.logo && (
-                  <div className="mr-3 w-6 h-6 relative">
-                    <Image
-                      src={item.logo}
-                      alt={`${item.name} Logo`}
-                      fill
-                      style={{ objectFit: "contain" }}
-                    />
-                  </div>
-                )}
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white text-left">
+          <div
+            key={item.id}
+            className="group relative rounded-2xl bg-gray-50 dark:bg-gray-900 p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-800 flex flex-col gap-4 overflow-hidden cursor-pointer"
+            onClick={() => handleExpand(item.id)}
+            onMouseEnter={() => {
+              if (!isMobile()) setExpanded(item.id);
+            }}
+            onMouseLeave={() => {
+              if (!isMobile()) setExpanded(null);
+            }}
+          >
+            {/* Gradient Overlay on Hover */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
+            <div className="flex items-center gap-4 mb-2 relative z-10">
+              {item.logo && (
+                <div className="w-10 h-10 relative flex-shrink-0">
+                  <Image
+                    src={item.logo}
+                    alt={`${item.name} Logo`}
+                    fill
+                    style={{ objectFit: 'contain' }}
+                    className="rounded"
+                  />
+                </div>
+              )}
+              <div>
+                <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400 mb-1 text-left">
                   {item.name}
                 </h3>
-              </div>
-              <div className="relative">
-                <button
-                  onClick={() => handleToggle(item.id)}
-                  className={`text-gray-500 text-sm bg-transparent px-2 py-1 rounded-full border border-gray-300 dark:border-gray-700 transition-opacity duration-200 ${
-                    hoveredItemId === item.id ? "opacity-100" : "opacity-0"
-                  }`}
-                  onMouseEnter={() =>
-                    setHoveredItemId(`${item.id}-expand-icon`)
-                  }
-                  onMouseLeave={() => setHoveredItemId(item.id)}
-                >
-                  {isExpanded(item.id) ? "-" : "+"}
-                </button>
-                {hoveredItemId === `${item.id}-expand-icon` && (
-                  <div className="absolute right-0 top-full mt-1 bg-transparent text-gray-500 text-xs px-2 py-1 rounded-md transition-opacity duration-200">
-                    Expand
-                  </div>
-                )}
+                <p className="text-base text-gray-700 dark:text-gray-300 mb-0 text-left">
+                  {item.institution}
+                </p>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-0 text-left">
+                  {item.year}
+                </p>
               </div>
             </div>
-            <p className="text-sm text-gray-600 dark:text-gray-300 ml-9">
-              {item.institution}
-            </p>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-2 ml-9">
-              {item.year}
-            </p>
-
-            <div className="flex flex-wrap gap-2 mt-2 ml-9">
+            <div className="flex flex-wrap gap-3 mb-2 relative z-10">
               {item.tags.map((tag, i) => (
                 <span
                   key={i}
-                  className="bg-gray-100 dark:bg-gray-700 text-sm px-3 py-1 rounded-full text-gray-800 dark:text-white border border-gray-300 dark:border-gray-600"
+                  className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-4 py-2 rounded-full text-sm shadow-sm hover:shadow-md transition-all duration-300"
                 >
                   {tag}
                 </span>
               ))}
             </div>
-
-            {isExpanded(item.id) && (
-              <div className="mt-3 pl-13">
-                <ul className="list-disc pl-5 text-gray-700 dark:text-gray-300">
-                  {item.details.map((detail, idx) => (
-                    <li key={idx}>{detail}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            <div
+              className={`relative z-10 transition-all duration-500 overflow-hidden ${expanded === item.id ? 'max-h-96 opacity-100 mt-2' : 'max-h-0 opacity-0 mt-0'}`}
+            >
+              <ul className="list-disc pl-5 text-gray-700 dark:text-gray-300 space-y-1">
+                {item.details.map((detail, idx) => (
+                  <li key={idx}>{detail}</li>
+                ))}
+              </ul>
+            </div>
+            {/* Show More/Less only on mobile */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleExpand(item.id);
+              }}
+              className="text-blue-600 dark:text-blue-400 text-sm mt-2 self-start hover:underline focus:outline-none md:hidden"
+            >
+              {expanded === item.id ? 'Show Less' : 'Show More'}
+            </button>
           </div>
         ))}
       </div>
