@@ -8,9 +8,9 @@ export default function About() {
         About Me
       </h2>
       <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-12">
-        I&apos;m <strong>Balaji Koneti</strong>, a passionate Data Scientist and AI
-        Engineer with <strong>3+ years</strong> of software experience. I&apos;m
-        currently pursuing my <strong>Master&apos;s in Computer Science</strong> and
+        I am <strong>Balaji Koneti</strong>, a passionate Data Scientist and AI
+        Engineer with <strong>3+ years</strong> of software experience. I am
+        currently pursuing <strong>Masters in Computer Science</strong> and
         working as a <strong>Teaching Assistant</strong> for the LLM (Large
         Language Models) course. I specialize in building intelligent systems
         using <strong>ML</strong>, <strong>GenAI</strong>, and{" "}
@@ -20,7 +20,7 @@ export default function About() {
       <div className="flex flex-wrap gap-4">
         {[
           "AI/ML/RAG/GenAI Developer",
-          "Master's in CS",
+          "Masters in CS",
           "Teaching Assistant – LLMs",
           "3+ Years Experience",
           "Ex Infoscion",
