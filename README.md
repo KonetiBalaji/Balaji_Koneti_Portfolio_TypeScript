@@ -1,12 +1,21 @@
-# Balaji.dev – Portfolio Transformation
+# Balaji.dev – Portfolio
 
-A dramatic, Apple-inspired transformation of a personal portfolio using Next.js, TypeScript, and Tailwind CSS.
+A modern, Apple-inspired portfolio built with Next.js, TypeScript, and Tailwind CSS. This project demonstrates a full transformation from a basic template to a visually unified, professional, and industry-standard portfolio.
 
 ---
 
-## 🚀 Before & After: The Journey
+## 🚀 Before & After
 
-This project began as a standard developer portfolio. Through a series of design sprints, it was elevated to a modern, industry-standard showcase—polished, interactive, and visually unified. Below, see the **before** state (Sprint_1) and read how each section was reimagined.
+| Before (Sprint_1) | After (Current) |
+|-------------------|----------------|
+| ![Hero Before](Sprint_1/hero.png) | ![Hero After](Sprint_4/hero_after.png) |
+| ![About Before](Sprint_1/about.png) | ![About After](Sprint_4/about_after.png) |
+| ![Skills Before](Sprint_1/skills.png) | ![Skills After](Sprint_4/skills_after.png) |
+| ![Projects Before](Sprint_1/projects.png) | ![Projects After](Sprint_4/projects_after.png) |
+| ![Education Before](Sprint_1/education.png) | ![Education After](Sprint_4/education_after.png) |
+| ![Work Before](Sprint_1/workexperience.png) | ![Work After](Sprint_4/work_after.png) |
+| ![Contact Before](Sprint_1/contact.png) | ![Contact After](Sprint_4/contact_after.png) |
+| ![Dark Mode Before](Sprint_1/dark_mode_landing.png) | ![Dark Mode After](Sprint_4/dark_mode_after.png) |
 
 ---
 
@@ -15,21 +24,14 @@ This project began as a standard developer portfolio. Through a series of design
 ```
 .
 ├── public/
-│   └── profile.jpg
+│   └── profile.jpg, [after images]
 ├── src/
 │   ├── app/
 │   ├── components/
 │   ├── styles/
 │   └── ...
 ├── Sprint_1/
-│   ├── hero.png
-│   ├── about.png
-│   ├── skills.png
-│   ├── projects.png
-│   ├── education.png
-│   ├── workexperience.png
-│   ├── contact.png
-│   └── dark_mode_landing.png
+│   └── [before images]
 ├── tailwind.config.js
 ├── package.json
 └── README.md
@@ -51,75 +53,55 @@ This project began as a standard developer portfolio. Through a series of design
 
 ---
 
-## ✨ Section-by-Section Transformation
+## ✨ Section-by-Section Improvements
 
 ### Hero Section
-- **Before:**
-  ![Hero Before](Sprint_1/hero.png)
-- **Improvements:**
+- **Before:** ![Hero Before](Sprint_1/hero.png)
+- **After:** ![Hero After](Sprint_4/hero_after.png)
+- **Changes:**  
   - Centered layout, larger profile image, animated gradient ring, Apple-style typography, animated intro text.
-  - Dramatic first impression: bold, welcoming, and interactive.
 
 ### About Section
-- **Before:**
-  ![About Before](Sprint_1/about.png)
-- **Improvements:**
+- **Before:** ![About Before](Sprint_1/about.png)
+- **After:** ![About After](Sprint_4/about_after.png)
+- **Changes:**  
   - Unified card/tag styles, improved spacing, modern Apple-inspired look.
-  - Clear, concise, and visually engaging summary of expertise.
 
 ### Skills Section
-- **Before:**
-  ![Skills Before](Sprint_1/skills.png)
-- **Improvements:**
-  - Consistent card and tag design, gradient overlays, smooth hover effects.
-  - Instantly communicates technical breadth with style.
+- **Before:** ![Skills Before](Sprint_1/skills.png)
+- **After:** ![Skills After](Sprint_4/skills_after.png)
+- **Changes:**  
+  - Consistent card/tag styles, gradient overlays, hover effects, unified with Projects section.
 
 ### Projects Section
-- **Before:**
-  ![Projects Before](Sprint_1/projects.png)
-- **Improvements:**
-  - Apple-style cards, gradient overlays, unified tag/button styles.
-  - Project titles and icons are now single, elegant links.
+- **Before:** ![Projects Before](Sprint_1/projects.png)
+- **After:** ![Projects After](Sprint_4/projects_after.png)
+- **Changes:**  
+  - Apple-style cards, gradient overlays, smooth hover, unified tag/button styles, clickable project titles/icons.
 
 ### Education Section
-- **Before:**
-  ![Education Before](Sprint_1/education.png)
-- **Improvements:**
-  - Card-based layout, gradient overlays, smooth expand/collapse transitions.
-  - Interactive, visually rich timeline of academic achievements.
+- **Before:** ![Education Before](Sprint_1/education.png)
+- **After:** ![Education After](Sprint_4/education_after.png)
+- **Changes:**  
+  - Card-based layout, gradient overlays, unified tag styles, expand/collapse transitions.
 
 ### Work Experience Section
-- **Before:**
-  ![Work Experience Before](Sprint_1/workexperience.png)
-- **Improvements:**
-  - Card-based layout, gradient overlays, unified tag styles, expand/collapse details.
-  - Professional, interactive, and easy to scan.
+- **Before:** ![Work Before](Sprint_1/workexperience.png)
+- **After:** ![Work After](Sprint_4/work_after.png)
+- **Changes:**  
+  - Card-based layout, gradient overlays, unified tag styles, expand/collapse transitions.
 
 ### Contact Section
-- **Before:**
-  ![Contact Before](Sprint_1/contact.png)
-- **Improvements:**
-  - Minimal, clean, with a prominent call-to-action button.
-  - Gradient button matches site accent, Apple-style overlays.
+- **Before:** ![Contact Before](Sprint_1/contact.png)
+- **After:** ![Contact After](Sprint_4/contact_after.png)
+- **Changes:**  
+  - Minimal, clean, prominent call-to-action, gradient button, unified button size and style.
 
 ### NavBar & Footer
-- **Before:**
-  ![Dark Mode Landing](Sprint_1/dark_mode_landing.png)
-- **Improvements:**
-  - Fixed, minimal NavBar with animated blue underline, accessible, responsive, and Apple-inspired.
-  - Footer is clean, minimal, and professional.
-
----
-
-## 🧑‍💻 How We Built This (The Transformation Story)
-
-- **Sprint 1:** Started with a basic Next.js/TypeScript/Tailwind portfolio. Each section was functional but visually disconnected and lacking polish.
-- **Design Audit:** Reviewed every section for consistency, accessibility, and modern UI/UX best practices.
-- **Apple-Inspired Redesign:** Unified all cards, tags, and buttons with gradients, shadows, and smooth transitions. Added animated underline to NavBar, improved mobile menu, and ensured accessibility.
-- **Microinteractions:** Added subtle hover, active, and animated effects for tactile feedback.
-- **Typography:** Upgraded to Inter for a crisp, professional look.
-- **Performance & SEO:** Optimized images, used Next.js font loader, and ensured fast, accessible, and SEO-friendly code.
-- **Final Polish:** Ensured every section is visually and interactively consistent, with a premium, industry-standard feel.
+- **Before:** ![Dark Mode Before](Sprint_1/dark_mode_landing.png)
+- **After:** ![Dark Mode After](Sprint_4/dark_mode_after.png)
+- **Changes:**  
+  - Fixed, minimal NavBar, animated underline, accessible, responsive hamburger menu, consistent accent color, minimal footer.
 
 ---
 
@@ -134,4 +116,10 @@ This project began as a standard developer portfolio. Through a series of design
 
 ---
 
-**Clone, run, and experience the transformation!**
+## 🙏 Credits & Inspiration
+
+- Inspired by Apple.com, Vercel, and top industry portfolios.
+
+---
+
+**Clone, run, and enjoy a truly modern, Apple-inspired portfolio!**
