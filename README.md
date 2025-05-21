@@ -4,7 +4,7 @@ A modern, Apple-inspired portfolio built with Next.js, TypeScript, and Tailwind 
 
 ---
 
-## 🚀 Before & After
+## Before & After
 
 | Before (Sprint_1) | After (Current) |
 |-------------------|----------------|
@@ -118,7 +118,7 @@ A modern, Apple-inspired portfolio built with Next.js, TypeScript, and Tailwind 
 
 ## 🙏 Credits & Inspiration
 
-- Inspired by Apple.com, Vercel, and top industry portfolios.
+- Inspired by Apple.com
 
 ---
 
