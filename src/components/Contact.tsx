@@ -16,7 +16,7 @@ export default function Contact() {
       </p>
 
       <a
-        href="mailto:koneti.balaji08@gmail.com"
+        href="mailto:balaji.koneti08@gmail.com"
         className="inline-flex items-center gap-2 text-white bg-gradient-to-r from-blue-500 to-purple-500 px-8 py-3 rounded-full shadow-sm hover:shadow-lg text-base font-medium transition-all duration-300 focus:outline-none"
       >
         <span>Send me an email</span>

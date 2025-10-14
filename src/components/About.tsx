@@ -8,22 +8,25 @@ export default function About() {
         About Me
       </h2>
       <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-12">
-        I&apos;m <strong>Balaji Koneti</strong>, a passionate Data Scientist and
-        AI Engineer with <strong>3+ years</strong> of software experience. I am
-        currently pursuing <strong>Masters in Computer Science</strong> and
-        working as a <strong>Teaching Assistant</strong> for the LLM (Large
-        Language Models) course. I specialize in building intelligent systems
-        using <strong>ML</strong>, <strong>GenAI</strong>, and{" "}
-        <strong>RAG</strong> architectures.
+        I&apos;m <strong>Balaji Koneti</strong>, an AI/ML Engineer with{" "}
+        <strong>5+ years</strong> of experience delivering scalable machine
+        learning and generative AI solutions across financial, healthcare, and
+        academic domains. I hold a <strong>Master&apos;s in Computer Science</strong>{" "}
+        from Northern Arizona University and served as a{" "}
+        <strong>Teaching Assistant</strong> for the Large Language Models (LLM)
+        course. My expertise includes end-to-end ML pipelines,{" "}
+        <strong>RAG architectures</strong>, <strong>LLM systems</strong>, and{" "}
+        <strong>MLOps</strong> using Python, Hugging Face, LangChain, and cloud
+        platforms (AWS, GCP, Kubernetes).
       </p>
 
       <div className="flex flex-wrap gap-4">
         {[
-          "AI/ML/RAG/GenAI Developer",
-          "Masters in CS",
-          "Teaching Assistant – LLMs",
-          "3+ Years Experience",
-          "Ex Infoscion",
+          "AI/ML Engineer",
+          "5+ Years Experience",
+          "Masters in CS - NAU",
+          "Teaching Assistant - LLMs",
+          "MLOps & Cloud Platforms",
         ].map((tag, idx) => (
           <span
             key={idx}
