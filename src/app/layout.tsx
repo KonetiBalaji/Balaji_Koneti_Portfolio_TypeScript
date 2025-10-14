@@ -71,7 +71,7 @@ export const metadata: Metadata = {
   category: "technology",
   classification: "AI/ML Engineer Portfolio",
   other: {
-    "google-site-verification": "google598c3b6c70f1eab6.html",
+    "google-site-verification": "rXk-YZcn1SVZnZqtVNI6DuAigAcwyZG64T9AzzV5SRQ",
   },
 };
 
