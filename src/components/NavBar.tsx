@@ -1,76 +1,70 @@
 'use client';
 
 import ThemeSwitcher from './ThemeSwitcher';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import {
   Home,
   User,
-  Hammer,
-  FileText,
+  Layers,
+  FolderKanban,
   GraduationCap,
   Briefcase,
   Mail,
   Menu,
   X,
 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const navItems = [
   { name: 'Home', href: '#hero', icon: Home },
   { name: 'About', href: '#about', icon: User },
-  { name: 'Skills', href: '#skills', icon: Hammer },
-  { name: 'Projects', href: '#projects', icon: FileText },
+  { name: 'Skills', href: '#skills', icon: Layers },
+  { name: 'Projects', href: '#projects', icon: FolderKanban },
   { name: 'Education', href: '#education', icon: GraduationCap },
-  { name: 'Work Experience', href: '#work', icon: Briefcase },
+  { name: 'Experience', href: '#work', icon: Briefcase },
   { name: 'Contact', href: '#contact', icon: Mail },
 ];
 
 export default function NavBar() {
   const [active, setActive] = useState<string>('Home');
   const [menuOpen, setMenuOpen] = useState(false);
-  const navRefs = useRef<(HTMLAnchorElement | null)[]>([]);
-  const underlineRef = useRef<HTMLDivElement>(null);
-  const [underlineProps, setUnderlineProps] = useState({ left: 0, width: 0 });
+  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Scroll-based active state
+  // Scroll-based active detection + hide on scroll down
+  const handleScroll = useCallback(() => {
+    const currentY = window.scrollY;
+
+    // Show/hide based on direction
+    if (currentY > lastScrollY && currentY > 100) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+    setLastScrollY(currentY);
+
+    // Scrolled state for glass effect
+    setScrolled(currentY > 20);
+
+    // Active section
+    const offsets = navItems.map(({ href }) => {
+      const el = document.querySelector(href);
+      if (!el) return { name: '', top: Infinity };
+      const rect = (el as HTMLElement).getBoundingClientRect();
+      return { name: href, top: Math.abs(rect.top - 100) };
+    });
+    const closest = offsets.reduce((a, b) => (a.top < b.top ? a : b));
+    const found = navItems.find((item) => item.href === closest.name);
+    if (found) setActive(found.name);
+  }, [lastScrollY]);
+
   useEffect(() => {
-    const handleScroll = () => {
-      const offsets = navItems.map(({ href }) => {
-        const el = document.querySelector(href);
-        if (!el) return { name: '', top: Infinity };
-        const rect = (el as HTMLElement).getBoundingClientRect();
-        return { name: href, top: Math.abs(rect.top) };
-      });
-      const closest = offsets.reduce((a, b) => (a.top < b.top ? a : b));
-      const found = navItems.find((item) => item.href === closest.name);
-      if (found) setActive(found.name);
-    };
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Update underline position/width on active change or resize
-  useEffect(() => {
-    const updateUnderline = () => {
-      const idx = navItems.findIndex((item) => item.name === active);
-      const el = navRefs.current[idx];
-      if (el) {
-        const rect = el.getBoundingClientRect();
-        const parentRect = el.parentElement?.getBoundingClientRect();
-        if (parentRect) {
-          setUnderlineProps({
-            left: rect.left - parentRect.left,
-            width: rect.width,
-          });
-        }
-      }
-    };
-    updateUnderline();
-    window.addEventListener('resize', updateUnderline);
-    return () => window.removeEventListener('resize', updateUnderline);
-  }, [active, menuOpen]);
+  }, [handleScroll]);
 
   // Close menu on ESC
   useEffect(() => {
@@ -81,102 +75,171 @@ export default function NavBar() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
+
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-white dark:bg-black">
-      <nav className="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
-        <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-          <Link href="#hero" aria-label="Home">Balaji.dev</Link>
-        </div>
+    <motion.header
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: hidden ? -100 : 0, opacity: hidden ? 0 : 1 }}
+      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        scrolled
+          ? 'glass shadow-[var(--shadow-sm)]'
+          : 'bg-transparent'
+      }`}
+    >
+      <nav className="section-container flex items-center justify-between h-16">
+        {/* Logo */}
+        <Link
+          href="#hero"
+          aria-label="Home"
+          className="relative group"
+        >
+          <span className="text-lg font-bold tracking-tight" style={{ color: 'var(--color-text-primary)' }}>
+            Balaji
+            <span className="gradient-text font-extrabold">.dev</span>
+          </span>
+        </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center space-x-4 relative">
-          {navItems.map(({ name, href, icon: Icon }, idx) => (
-            <Link
-              key={name}
-              href={href}
-              aria-label={name}
-              ref={el => { navRefs.current[idx] = el; }}
-              className={`group relative flex items-center justify-center text-sm text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition
-                ${active === name ? 'text-blue-600 dark:text-blue-400' : ''}`}
-            >
-              <div className="relative flex items-center">
-                <Icon className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-                {active === name && (
-                  <span className="ml-1 px-2 py-1 rounded text-sm animate-slide-in">
-                    {name}
-                  </span>
+        <div className="hidden md:flex items-center gap-1">
+          {navItems.map(({ name, href, icon: Icon }) => {
+            const isActive = active === name;
+            return (
+              <Link
+                key={name}
+                href={href}
+                aria-label={name}
+                className="relative px-3 py-2 text-sm font-medium transition-colors duration-300 rounded-lg group"
+                style={{
+                  color: isActive ? 'var(--color-accent)' : 'var(--color-text-secondary)',
+                }}
+                onMouseEnter={(e) => {
+                  if (!isActive) (e.currentTarget as HTMLElement).style.color = 'var(--color-text-primary)';
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) (e.currentTarget as HTMLElement).style.color = 'var(--color-text-secondary)';
+                }}
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-pill"
+                    className="absolute inset-0 rounded-lg"
+                    style={{ background: 'var(--color-accent-light)' }}
+                    transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                  />
                 )}
-              </div>
-            </Link>
-          ))}
-          {/* True gliding underline */}
-          <motion.div
-            ref={underlineRef}
-            className="absolute bottom-0 h-1 rounded bg-blue-600 dark:bg-blue-400"
-            animate={{ left: underlineProps.left, width: underlineProps.width }}
-            transition={{ duration: 0.6, ease: 'easeInOut' }}
-            style={{ zIndex: 1 }}
-          />
+                <span className="relative z-10 flex items-center gap-1.5">
+                  <Icon className="w-4 h-4" strokeWidth={isActive ? 2.5 : 2} />
+                  <span className="hidden lg:inline">{name}</span>
+                </span>
+              </Link>
+            );
+          })}
+
+          <div className="ml-2 pl-2" style={{ borderLeft: '1px solid var(--color-border)' }}>
+            <ThemeSwitcher />
+          </div>
+        </div>
+
+        {/* Mobile: Theme + Hamburger */}
+        <div className="flex md:hidden items-center gap-2">
           <ThemeSwitcher />
-        </div>
-
-        {/* Hamburger for mobile */}
-        <button
-          className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          onClick={() => setMenuOpen((v) => !v)}
-        >
-          {menuOpen ? <X className="w-6 h-6 text-blue-600 dark:text-blue-400" /> : <Menu className="w-6 h-6 text-blue-600 dark:text-blue-400" />}
-        </button>
-
-        {/* Slide-out mobile menu */}
-        <div
-          className={`fixed inset-0 z-50 bg-black/40 dark:bg-black/60 transition-opacity duration-300 ${menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
-          aria-hidden={!menuOpen}
-          onClick={() => setMenuOpen(false)}
-        >
-          <nav
-            className={`fixed top-0 right-0 h-full w-64 bg-white dark:bg-black shadow-xl transform transition-transform duration-300 ${menuOpen ? 'translate-x-0' : 'translate-x-full'}`}
-            role="dialog"
-            aria-modal="true"
-            tabIndex={-1}
-            onClick={(e) => e.stopPropagation()}
+          <button
+            className="p-2 rounded-lg transition-colors"
+            style={{ color: 'var(--color-text-primary)' }}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            onClick={() => setMenuOpen((v) => !v)}
           >
-            <div className="flex flex-col h-full p-6 space-y-6">
-              <div className="flex items-center justify-between">
-                <span className="text-xl font-bold text-blue-600 dark:text-blue-400">Menu</span>
-                <button
-                  className="p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  aria-label="Close menu"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  <X className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                </button>
-              </div>
-              <div className="flex flex-col space-y-4 mt-4">
-                {navItems.map(({ name, href, icon: Icon }) => (
-                  <Link
-                    key={name}
-                    href={href}
-                    aria-label={name}
-                    onClick={() => setMenuOpen(false)}
-                    className={`flex items-center space-x-3 text-lg font-medium px-3 py-2 rounded transition
-                      ${active === name ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400'}`}
-                  >
-                    <div className="relative flex items-center w-full">
-                      <Icon className="w-5 h-5" />
-                      <span className="ml-2">{name}</span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-              <div className="mt-auto">
-                <ThemeSwitcher />
-              </div>
-            </div>
-          </nav>
+            {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
+
+        {/* Mobile Menu Overlay */}
+        <AnimatePresence>
+          {menuOpen && (
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="fixed inset-0 z-50"
+                style={{ background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(4px)' }}
+                onClick={() => setMenuOpen(false)}
+              />
+              <motion.nav
+                initial={{ x: '100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '100%' }}
+                transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+                className="fixed top-0 right-0 h-full w-72 z-50 flex flex-col"
+                style={{ background: 'var(--color-surface)', borderLeft: '1px solid var(--color-border)' }}
+                role="dialog"
+                aria-modal="true"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Mobile header */}
+                <div className="flex items-center justify-between p-6" style={{ borderBottom: '1px solid var(--color-border)' }}>
+                  <span className="text-lg font-bold gradient-text">Menu</span>
+                  <button
+                    className="p-2 rounded-lg transition-colors"
+                    style={{ color: 'var(--color-text-primary)' }}
+                    aria-label="Close menu"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
+                {/* Mobile nav links */}
+                <div className="flex-1 py-4 px-3 space-y-1 overflow-y-auto">
+                  {navItems.map(({ name, href, icon: Icon }, idx) => {
+                    const isActive = active === name;
+                    return (
+                      <motion.div
+                        key={name}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: idx * 0.05, duration: 0.3 }}
+                      >
+                        <Link
+                          href={href}
+                          aria-label={name}
+                          onClick={() => setMenuOpen(false)}
+                          className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-300"
+                          style={{
+                            color: isActive ? 'var(--color-accent)' : 'var(--color-text-secondary)',
+                            background: isActive ? 'var(--color-accent-light)' : 'transparent',
+                          }}
+                        >
+                          <Icon className="w-5 h-5" strokeWidth={isActive ? 2.5 : 2} />
+                          <span>{name}</span>
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+
+                {/* Mobile footer */}
+                <div className="p-6" style={{ borderTop: '1px solid var(--color-border)' }}>
+                  <p className="text-xs" style={{ color: 'var(--color-text-tertiary)' }}>
+                    Designed & Built by Balaji Koneti
+                  </p>
+                </div>
+              </motion.nav>
+            </>
+          )}
+        </AnimatePresence>
       </nav>
-    </header>
+    </motion.header>
   );
 }
