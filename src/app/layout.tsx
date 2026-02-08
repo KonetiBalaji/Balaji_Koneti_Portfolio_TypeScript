@@ -2,6 +2,7 @@ import "../styles/globals.css";
 
 import { Providers } from "./Providers";
 import StructuredData from "@/components/StructuredData";
+import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 
@@ -87,6 +88,7 @@ export default function RootLayout({
       </head>
       <body className="bg-white dark:bg-black text-gray-900 dark:text-white">
         <Providers>{children}</Providers>
+        <Analytics />
         <SpeedInsights />
       </body>
     </html>
