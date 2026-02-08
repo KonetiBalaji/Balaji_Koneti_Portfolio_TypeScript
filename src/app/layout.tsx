@@ -1,4 +1,10 @@
 import "../styles/globals.css";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
+import "@fontsource/inter/800.css";
+import "@fontsource/inter/900.css";
 
 import { Providers } from "./Providers";
 import StructuredData from "@/components/StructuredData";
@@ -9,25 +15,28 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   metadataBase: new URL('https://balaji-konetidev.vercel.app'),
   title: {
-    default: "Balaji Koneti - AI/ML Engineer & Data Scientist",
+    default: "Balaji Koneti - Machine Learning Engineer | GenAI & RAG",
     template: "%s | Balaji Koneti"
   },
-  description: "AI/ML Engineer with 3+ years experience. Masters in CS, Teaching Assistant for LLMs. Specializing in Python, Machine Learning, GenAI, and RAG architectures.",
+  description: "Machine Learning Engineer (GenAI/RAG) with 6+ years in software engineering. Shipping production retrieval & evaluation systems on AWS. +22% retrieval relevance, P95 640ms, -31% LLM cost.",
   keywords: [
-    "AI engineer",
     "machine learning engineer",
-    "gen ai engineer", 
-    "data scientist",
-    "Python developer",
-    "LLM specialist",
-    "GenAI expert",
+    "GenAI engineer",
     "RAG architecture",
+    "LLM engineer",
+    "retrieval augmented generation",
+    "Python developer",
+    "LangChain",
+    "pgvector",
+    "FastAPI",
+    "AWS SageMaker",
+    "ML evaluation",
+    "RAGAS",
     "Balaji Koneti",
     "portfolio",
     "Northern Arizona University",
-    "Teaching Assistant",
     "Infosys",
-    "software engineer"
+    "production ML systems"
   ],
   authors: [{ name: "Balaji Koneti", url: "https://balaji-konetidev.vercel.app" }],
   creator: "Balaji Koneti",
@@ -48,21 +57,21 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "/",
     siteName: "Balaji Koneti Portfolio",
-    title: "Balaji Koneti - AI/ML Engineer & Data Scientist",
-    description: "AI/ML Engineer with expertise in Python, Machine Learning, and Large Language Models. View my projects, experience, and technical skills.",
+    title: "Balaji Koneti - Machine Learning Engineer | GenAI & RAG",
+    description: "ML Engineer shipping production RAG systems. +22% retrieval relevance, P95 640ms, -31% LLM cost. 6+ years across AWS, LangChain, pgvector.",
     images: [
       {
         url: "/profile.jpg",
         width: 1200,
         height: 630,
-        alt: "Balaji Koneti - AI/ML Engineer Profile",
+        alt: "Balaji Koneti - ML Engineer | GenAI & RAG",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Balaji Koneti - AI/ML Engineer",
-    description: "AI/ML Engineer specializing in Python, Machine Learning, and Large Language Models",
+    title: "Balaji Koneti - ML Engineer | GenAI & RAG",
+    description: "ML Engineer shipping production RAG systems on AWS. LangChain, pgvector, RAGAS evaluation.",
     images: ["/profile.jpg"],
     creator: "@BalajiKoneti",
   },
@@ -86,7 +95,7 @@ export default function RootLayout({
       <head>
         <StructuredData />
       </head>
-      <body className="bg-white dark:bg-black text-gray-900 dark:text-white">
+      <body className="noise">
         <Providers>{children}</Providers>
         <Analytics />
         <SpeedInsights />

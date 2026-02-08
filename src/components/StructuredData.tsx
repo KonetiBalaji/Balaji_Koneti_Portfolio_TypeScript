@@ -5,10 +5,10 @@ export default function StructuredData() {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Balaji Koneti",
-    "jobTitle": "AI/ML Engineer & Data Scientist",
-    "description": "AI/ML Engineer with 3+ years experience. Masters in CS, Teaching Assistant for LLMs. Specializing in Python, Machine Learning, GenAI, and RAG architectures.",
+    "jobTitle": "Machine Learning Engineer (GenAI/RAG)",
+    "description": "Machine Learning Engineer with 6+ years in software engineering, shipping production retrieval and evaluation systems on AWS. Delivered measurable gains in retrieval relevance (+22% P@5), latency (P95 640ms), and LLM cost (-31%).",
     "url": "https://balaji-konetidev.vercel.app/",
-    "image": "https://balaji.dev/profile.jpg",
+    "image": "https://balaji-konetidev.vercel.app/profile.jpg",
     "sameAs": [
       "https://linkedin.com/in/BalajiKoneti",
       "https://github.com/KonetiBalaji",
@@ -16,79 +16,93 @@ export default function StructuredData() {
     ],
     "knowsAbout": [
       "Machine Learning",
-      "Python",
-      "Large Language Models",
       "GenAI",
-      "Data Science",
       "RAG Architecture",
-      "BART",
-      "Transformers",
-      "Scikit-learn",
-      "TensorFlow",
+      "LangChain",
+      "LlamaIndex",
+      "pgvector",
+      "Vector Search",
+      "LLMs",
+      "OpenAI GPT-4",
+      "Anthropic Claude",
+      "Python",
+      "FastAPI",
+      "NLP",
+      "RAGAS",
+      "SHAP",
+      "LIME",
+      "MLflow",
+      "XGBoost",
+      "scikit-learn",
       "PyTorch",
-      "OpenCV",
+      "BERT",
+      "Transformers",
+      "AWS",
+      "Docker",
+      "Terraform",
+      "PostgreSQL",
       "SQL",
-      "NoSQL",
-      "Git",
-      "Java",
-      "Spring Microservices",
-      "AWS"
+      "ETL"
     ],
     "alumniOf": [
       {
         "@type": "CollegeOrUniversity",
         "name": "Northern Arizona University",
-        "location": "Arizona, USA",
-        "degree": "Master's in Computer Science",
-        "startDate": "2024",
-        "endDate": "2025"
+        "location": "Flagstaff, AZ, USA",
+        "degree": "Master of Science in Computer Science",
+        "startDate": "2024-01",
+        "endDate": "2025-05"
       },
       {
-        "@type": "CollegeOrUniversity", 
-        "name": "JNTU Anantapur",
-        "location": "India",
-        "degree": "Bachelor of Technology - Computer Science",
-        "startDate": "2016",
-        "endDate": "2020"
+        "@type": "CollegeOrUniversity",
+        "name": "Jawaharlal Nehru Technological University",
+        "location": "Tirupati, AP, India",
+        "degree": "Bachelor of Technology in Computer Science",
+        "startDate": "2016-06",
+        "endDate": "2020-11"
       }
     ],
-    "worksFor": [
-      {
-        "@type": "Organization",
-        "name": "Northern Arizona University",
-        "jobTitle": "Teaching Assistant - LLMs",
-        "description": "Assisted in teaching and mentoring students on LLM concepts and real-world applications"
-      }
-    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Progress Solutions",
+      "jobTitle": "Machine Learning Engineer",
+      "location": "Plano, TX"
+    },
     "hasOccupation": {
       "@type": "Occupation",
-      "name": "AI/ML Engineer",
-      "description": "Building intelligent systems using Machine Learning, GenAI, and RAG architectures",
+      "name": "Machine Learning Engineer",
+      "description": "Shipping production RAG retrieval and evaluation systems on AWS with measurable impact in relevance, latency, and cost.",
       "skills": [
         "Python",
-        "Machine Learning",
-        "Large Language Models",
+        "LangChain",
+        "pgvector",
+        "FastAPI",
+        "AWS",
+        "RAGAS",
+        "LLM Evaluation",
         "GenAI",
-        "RAG",
-        "Data Science",
-        "Deep Learning"
+        "RAG"
       ]
     },
-    "award": [
-      "Rise Award - Infosys",
-      "Insta Award - Infosys"
-    ],
-    "memberOf": [
+    "hasCredential": [
       {
-        "@type": "Organization",
-        "name": "Computer Society of India",
-        "role": "Executive Body Member & Student Coordinator"
+        "@type": "EducationalOccupationalCredential",
+        "name": "AWS Certified Machine Learning - Specialty",
+        "dateCreated": "2025-05"
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "IBM Machine Learning Specialist - Advanced",
+        "dateCreated": "2025-04"
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "Deep Learning using TensorFlow",
+        "dateCreated": "2025-04"
       }
     ],
     "nationality": "Indian",
-    "birthPlace": "India",
-    "email": "koneti.balaji08@gmail.com",
-    "telephone": "+1-XXX-XXX-XXXX"
+    "email": "balaji.koneti08@gmail.com"
   };
 
   return (
