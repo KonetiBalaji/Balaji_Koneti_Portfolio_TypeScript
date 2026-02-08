@@ -1,133 +1,209 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { Calendar, MapPin } from 'lucide-react';
+import nauLogo from '../../public/icons/nau.png';
+import jntuLogo from '../../public/icons/jntu.png';
 
-import Image from "next/image"; // Import the Image component for optimized image rendering
-import jntuLogo from "../../public/icons/jntu.png"; // Same relative path
-import nauLogo from "../../public/icons/nau.png"; // Go up from 'components' to 'src', then to 'public'
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
+};
+
+const stagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
+};
 
 export const educationData = [
   {
-    id: "nau-ms",
-    name: "Master's in Computer Science",
-    institution: "Northern Arizona University, AZ",
-    year: "2024 – 2025",
-    tags: ["AI Focused", "Teaching Assistant", "LLMs"],
+    id: 'nau-ms',
+    degree: 'Master of Science in Computer Science',
+    institution: 'Northern Arizona University',
+    location: 'Flagstaff, AZ',
+    year: 'Jan 2024 – May 2025',
+    tags: ['AI/ML Focus', 'Graduate TA', 'Model Explainability', 'SHAP & LIME'],
     details: [
-      "AI Focused Curriculum",
-      "Worked as a Teaching Assistant",
-      "Focused on Large Language Models",
+      'Graduate Teaching Assistant for Machine Learning - led explainability reviews across 12 projects and 30+ models',
+      'Deep focus on ML evaluation, model interpretability, and NLP/LLM systems',
+      'Built reusable SHAP/LIME notebooks adopted as course-wide standard',
     ],
     logo: nauLogo,
   },
   {
-    id: "jntu-btech",
-    name: "Bachelor of Technology – Computer Science",
-    institution: "JNTU Anantapur, India",
-    year: "2016 – 2020",
-    tags: ["Foundation", "Project Management", "Hackathons"],
+    id: 'jntu-btech',
+    degree: 'Bachelor of Technology in Computer Science',
+    institution: 'Jawaharlal Nehru Technological University',
+    location: 'Tirupati, AP, India',
+    year: 'Jun 2016 – Nov 2020',
+    tags: ['CS Fundamentals', 'Data Structures', 'Algorithms', 'CSI Member'],
     details: [
-      "Built a strong foundation in Computer Science",
-      "Participated in Project Management activities",
-      "Involved in Hackathons",
+      'Strong foundation in data structures, algorithms, and systems programming',
+      'Active in hackathons and technical competitions',
+      'Executive Body Member of Computer Society of India (CSI)',
     ],
     logo: jntuLogo,
   },
 ];
 
-const isMobile = () =>
-  typeof window !== "undefined" && window.matchMedia("(hover: none) and (pointer: coarse)").matches;
-
-const Education = () => {
-  const [expanded, setExpanded] = useState<string | null>(null);
-
-  const handleExpand = (id: string) => {
-    if (isMobile()) {
-      setExpanded(expanded === id ? null : id);
-    }
-  };
-
+export default function Education() {
   return (
     <section
       id="education"
-      className="px-6 py-12 max-w-5xl mx-auto bg-white dark:bg-black"
+      className="relative py-24 lg:py-32"
+      style={{ background: 'var(--color-bg)' }}
     >
-      <h2 className="text-3xl font-bold mb-10 text-gray-900 dark:text-white text-left">
-        Education
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {educationData.map((item) => (
-          <div
-            key={item.id}
-            className="group relative rounded-2xl bg-gray-50 dark:bg-gray-900 p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-800 flex flex-col gap-4 overflow-hidden cursor-pointer"
-            onClick={() => handleExpand(item.id)}
-            onMouseEnter={() => {
-              if (!isMobile()) setExpanded(item.id);
-            }}
-            onMouseLeave={() => {
-              if (!isMobile()) setExpanded(null);
-            }}
+      <div className="section-container">
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-80px' }}
+        >
+          {/* Section label */}
+          <motion.div variants={fadeUp} className="mb-4">
+            <span
+              className="text-xs font-semibold tracking-[0.2em] uppercase"
+              style={{ color: 'var(--color-accent)' }}
+            >
+              Education
+            </span>
+          </motion.div>
+
+          {/* Heading */}
+          <motion.h2
+            variants={fadeUp}
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-6"
+            style={{ color: 'var(--color-text-primary)', lineHeight: 1.15 }}
           >
-            {/* Gradient Overlay on Hover */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
-            <div className="flex items-center gap-4 mb-2 relative z-10">
-              {item.logo && (
-                <div className="w-10 h-10 relative flex-shrink-0">
-                  <Image
-                    src={item.logo}
-                    alt={`${item.name} Logo`}
-                    fill
-                    style={{ objectFit: 'contain' }}
-                    className="rounded"
-                  />
-                </div>
-              )}
-              <div>
-                <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400 mb-1 text-left">
-                  {item.name}
-                </h3>
-                <p className="text-base text-gray-700 dark:text-gray-300 mb-0 text-left">
-                  {item.institution}
-                </p>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-0 text-left">
-                  {item.year}
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-wrap gap-3 mb-2 relative z-10">
-              {item.tags.map((tag, i) => (
-                <span
-                  key={i}
-                  className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 px-4 py-2 rounded-full text-sm shadow-sm hover:shadow-md transition-all duration-300"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+            Academic foundations
+            <br />
+            <span className="gradient-text">that shaped my craft.</span>
+          </motion.h2>
+
+          <motion.p
+            variants={fadeUp}
+            className="text-base sm:text-lg mb-14 max-w-2xl"
+            style={{ color: 'var(--color-text-secondary)' }}
+          >
+            M.S. in Computer Science with ML specialization, backed by strong CS fundamentals from India.
+          </motion.p>
+
+          {/* Timeline */}
+          <div className="relative">
             <div
-              className={`relative z-10 transition-all duration-500 overflow-hidden ${expanded === item.id ? 'max-h-96 opacity-100 mt-2' : 'max-h-0 opacity-0 mt-0'}`}
-            >
-              <ul className="list-disc pl-5 text-gray-700 dark:text-gray-300 space-y-1">
-                {item.details.map((detail, idx) => (
-                  <li key={idx}>{detail}</li>
-                ))}
-              </ul>
-            </div>
-            {/* Show More/Less only on mobile */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                handleExpand(item.id);
-              }}
-              className="text-blue-600 dark:text-blue-400 text-sm mt-2 self-start hover:underline focus:outline-none md:hidden"
-            >
-              {expanded === item.id ? 'Show Less' : 'Show More'}
-            </button>
+              className="absolute left-6 top-0 bottom-0 w-px hidden md:block"
+              style={{ background: 'var(--color-border-strong)' }}
+            />
+
+            <motion.div variants={stagger} className="space-y-8">
+              {educationData.map((item) => (
+                <motion.div
+                  key={item.id}
+                  variants={fadeUp}
+                  className="relative md:pl-16"
+                >
+                  {/* Timeline node */}
+                  <div
+                    className="absolute left-4 top-8 w-5 h-5 rounded-full hidden md:flex items-center justify-center z-10"
+                    style={{ background: 'var(--color-bg)', border: '2px solid var(--color-accent)' }}
+                  >
+                    <div
+                      className="w-2 h-2 rounded-full"
+                      style={{ background: 'var(--color-accent)' }}
+                    />
+                  </div>
+
+                  {/* Card */}
+                  <div
+                    className="group card-hover rounded-2xl p-7 sm:p-8 relative overflow-hidden"
+                    style={{
+                      background: 'var(--color-surface)',
+                      border: '1px solid var(--color-border)',
+                    }}
+                  >
+                    <div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                      style={{ background: 'var(--gradient-subtle)' }}
+                    />
+
+                    <div className="relative z-10">
+                      <div className="flex items-start gap-4 mb-5">
+                        {item.logo && (
+                          <div
+                            className="w-12 h-12 relative flex-shrink-0 rounded-xl overflow-hidden flex items-center justify-center"
+                            style={{ background: 'var(--color-bg-secondary)', border: '1px solid var(--color-border)' }}
+                          >
+                            <Image
+                              src={item.logo}
+                              alt={`${item.institution} logo`}
+                              fill
+                              sizes="48px"
+                              style={{ objectFit: 'contain', padding: '6px' }}
+                            />
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <h3
+                            className="text-lg sm:text-xl font-bold tracking-tight mb-1"
+                            style={{ color: 'var(--color-text-primary)' }}
+                          >
+                            {item.degree}
+                          </h3>
+                          <p className="text-sm font-medium" style={{ color: 'var(--color-accent)' }}>
+                            {item.institution}
+                          </p>
+                          <div className="flex flex-wrap items-center gap-3 mt-2">
+                            <span className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--color-text-tertiary)' }}>
+                              <Calendar className="w-3.5 h-3.5" />
+                              {item.year}
+                            </span>
+                            <span className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--color-text-tertiary)' }}>
+                              <MapPin className="w-3.5 h-3.5" />
+                              {item.location}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <ul className="space-y-2 mb-5">
+                        {item.details.map((detail, idx) => (
+                          <li key={idx} className="flex items-start gap-2.5">
+                            <span
+                              className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0"
+                              style={{ background: 'var(--color-accent)' }}
+                            />
+                            <span className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+                              {detail}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="flex flex-wrap gap-2">
+                        {item.tags.map((tag, i) => (
+                          <span
+                            key={i}
+                            className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-medium"
+                            style={{
+                              background: 'var(--color-bg-secondary)',
+                              color: 'var(--color-text-secondary)',
+                              border: '1px solid var(--color-border)',
+                            }}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
-        ))}
+        </motion.div>
       </div>
     </section>
   );
-};
-
-export default Education;
+}
