@@ -1,0 +1,94 @@
+# Balaji Koneti - Machine Learning Engineer
+
+> Machine Learning Engineer (GenAI/RAG) with 6+ years in software engineering,
+> shipping production retrieval and evaluation systems on AWS.
+
+## Identity
+
+- Full Name: Balaji Koneti
+- Title: Machine Learning Engineer (GenAI/RAG)
+- Location: Plano, TX, USA
+- Website: https://balajikoneti.dev
+- Email: balaji.koneti08@gmail.com
+- LinkedIn: https://linkedin.com/in/BalajiKoneti
+- GitHub: https://github.com/KonetiBalaji
+- Credly: https://www.credly.com/users/balaji-koneti/
+
+## Professional Summary
+
+Balaji Koneti is a Machine Learning Engineer specializing in Generative AI and
+Retrieval-Augmented Generation (RAG) with 6+ years of software engineering
+experience. He currently works at Progress Solutions in Plano, TX, where he
+designs and ships production RAG services on AWS.
+
+Key measurable achievements:
+- +22% retrieval relevance (Precision@5) on ~450 real enterprise queries
+- P95 end-to-end latency reduced from 1.3s to 640ms
+- -31% LLM cost per request through token budgets and dynamic model routing
+- Built evaluation pipeline combining human review (Label Studio) with LLM-as-judge (RAGAS)
+
+## Technical Skills
+
+### Core Expertise
+- GenAI/RAG: LangChain, LlamaIndex, Semantic Chunking, pgvector, Hybrid Retrieval, Vector Search
+- LLMs: OpenAI GPT-4/4o, Anthropic Claude, Prompt Engineering, Token Optimization, Dynamic Model Routing
+- ML: NLP, Supervised Learning, XGBoost, scikit-learn, PyTorch, BERT, Transformers
+- Evaluation: RAGAS, LLM-as-Judge, Human-in-the-Loop (Label Studio), MLflow, SHAP, LIME
+
+### Infrastructure & Engineering
+- Languages: Python, Java, SQL
+- APIs: FastAPI, REST APIs, Circuit Breakers, Redis Caching
+- Cloud: AWS (EC2, S3, Lambda, SageMaker), Docker, Terraform, CI/CD
+- Data: PostgreSQL, ETL Pipelines, SQL Tuning, Indexing & Partitioning
+
+## Work Experience
+
+### Machine Learning Engineer - Progress Solutions (Jun 2025 - Present)
+- Led design and rollout of production RAG services using LangChain & pgvector
+- Improved retrieval relevance by 22% (P@5) via semantic/recursive chunking and hybrid retrieval
+- Cut P95 latency from 1.3s to 640ms via service separation, Redis caching, and embedding batching
+- Reduced LLM spend by 31% through token budgets, prompt compression, and dynamic routing
+- Built evaluation pipeline with Label Studio + RAGAS + custom GPT graders as release gate
+- Productionized inference service with FastAPI on AWS with circuit breakers and abstain handling
+
+### Graduate Teaching Assistant - Northern Arizona University (Jun 2024 - May 2025)
+- Led model explainability reviews using SHAP & LIME across 12 projects, 45 students, 30+ models
+- Built reusable interpretability notebooks reducing time-to-diagnose by 40%
+- Coached teams on evaluation hygiene and reduced rework cycles by 2 iterations
+
+### Software Engineer (ML Systems) - Infosys Ltd (Mar 2022 - Dec 2023)
+- Built fraud-detection pipelines over 1M+ transactional records with XGBoost
+- Improved ETL performance 43% through SQL tuning and automated data-quality validation
+- Integrated ML outputs into backend services with resilient API patterns
+
+### Software Engineer - Nerds and Geeks Pvt Ltd (Dec 2019 - Feb 2022)
+- Cut P95 query latency from 450ms to 120ms through schema and SQL optimization
+- Automated reporting workflows from 4 hours to 20 minutes
+- Reduced production defects by 20% through validation and structured logging
+
+## Education
+
+- M.S. in Computer Science - Northern Arizona University, Flagstaff, AZ (Jan 2024 - May 2025)
+  - Focus: AI/ML, Model Explainability, NLP/LLM Systems
+  - Graduate TA for Machine Learning
+- B.Tech in Computer Science - JNTU, Tirupati, India (Jun 2016 - Nov 2020)
+
+## Certifications
+
+- AWS Certified Machine Learning - Specialty (May 2025)
+- IBM Machine Learning Specialist - Advanced (Apr 2025)
+- Deep Learning using TensorFlow - IBM (Apr 2025)
+
+## Featured Projects
+
+### Intelligent Learning Assistant
+NLP-based learning assistant using BERT + Transformers to guide 200+ students
+through stepwise learning workflows. +35% task accuracy, -30% prompt injection
+attempts, +40% learning outcome improvement.
+Tech: Python, Hugging Face, BERT, PyTorch, FastAPI, Transformers
+
+### LLM for Security Log Detection
+Hybrid LLM + BERT + regex pipeline for security log analysis detecting anomalies
+and threats. Generates structured triage with severity, cause, and recommended
+actions. Web + CLI interfaces for investigation.
+Tech: Python, LLM APIs, BERT, Transformers, Regex, FastAPI, Streamlit
