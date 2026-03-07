@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Mail, Linkedin, Github, ArrowUpRight } from 'lucide-react';
-import { SiCredly } from 'react-icons/si';
+
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },

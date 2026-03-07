@@ -84,6 +84,7 @@ function CertTiltCard({ children, className, style }: {
 export default function Certifications() {
   return (
     <section
+      id="certifications"
       className="relative py-24 lg:py-32"
       style={{ background: 'var(--color-bg)' }}
     >

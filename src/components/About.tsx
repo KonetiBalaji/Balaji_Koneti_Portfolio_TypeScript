@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 import { TrendingUp, Zap, DollarSign, Code2 } from 'lucide-react';
 
@@ -160,7 +160,6 @@ function StatCard({ stat, index }: { stat: typeof stats[0]; index: number }) {
 
 export default function About() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
 
   return (
     <section

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import Image from 'next/image';
 import { useState, useRef } from 'react';
 import { Calendar, MapPin, ChevronDown, ChevronUp } from 'lucide-react';

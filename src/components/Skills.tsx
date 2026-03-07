@@ -75,11 +75,10 @@ const skills = [
 ];
 
 /* ── 3D Tilt Card ── */
-function TiltCard({ children, className, style, color }: {
+function TiltCard({ children, className, style }: {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
-  color: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -174,7 +173,6 @@ export default function Skills() {
                   className={isWide ? 'sm:col-span-2' : ''}
                 >
                   <TiltCard
-                    color={group.color}
                     className={`group rounded-2xl p-6 flex flex-col gap-5 relative overflow-hidden h-full cursor-default`}
                     style={{
                       background: 'var(--color-surface)',
