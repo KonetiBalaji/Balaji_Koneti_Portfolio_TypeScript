@@ -3,13 +3,14 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowDown, FileText, ScrollText } from 'lucide-react';
+import Image from 'next/image';
 
 const container = {
   hidden: {},
   show: {
     transition: {
       staggerChildren: 0.15,
-      delayChildren: 1.8, // after preloader
+      delayChildren: 0.9,
     },
   },
 };
@@ -84,7 +85,6 @@ export default function Hero() {
   const opacitySection = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   useEffect(() => {
-    // Delay typing until after preloader
     const preloaderDelay = setTimeout(() => {
       let currentIndex = 0;
       const interval = setInterval(() => {
@@ -98,7 +98,7 @@ export default function Hero() {
       }, 70);
 
       return () => clearInterval(interval);
-    }, 1900);
+    }, 900);
 
     return () => clearTimeout(preloaderDelay);
   }, []);
@@ -182,10 +182,13 @@ export default function Hero() {
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 min-h-[4rem]"
             style={{ color: 'var(--color-text-primary)', lineHeight: 1.1 }}
           >
-            {text}
-            {showCursor && (
-              <span className="animate-blink" style={{ color: 'var(--color-accent)' }}>|</span>
-            )}
+            <span className="sr-only">Hi, I&apos;m Balaji Koneti - Machine Learning Engineer</span>
+            <span aria-hidden="true">
+              {text}
+              {showCursor && (
+                <span className="animate-blink" style={{ color: 'var(--color-accent)' }}>|</span>
+              )}
+            </span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -271,9 +274,13 @@ export default function Hero() {
             className="relative w-48 h-48 sm:w-56 sm:h-56 lg:w-72 lg:h-72 rounded-full p-1"
             style={{ background: 'var(--gradient-primary)' }}
           >
-            <img
+            <Image
               src="/profile.jpg"
-              alt="Balaji Koneti"
+              alt="Balaji Koneti - Machine Learning Engineer specializing in GenAI and RAG"
+              width={288}
+              height={288}
+              priority
+              sizes="(max-width: 640px) 192px, (max-width: 1024px) 224px, 288px"
               className="w-full h-full rounded-full object-cover"
               style={{ border: '4px solid var(--color-bg)' }}
             />
@@ -286,7 +293,7 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 3.5, duration: 0.6 }}
+        transition={{ delay: 2, duration: 0.6 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
         <span className="text-xs font-medium tracking-widest uppercase" style={{ color: 'var(--color-text-tertiary)' }}>

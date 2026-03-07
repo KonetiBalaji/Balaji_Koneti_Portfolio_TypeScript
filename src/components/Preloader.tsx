@@ -8,23 +8,20 @@ export default function Preloader() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Simulate loading progress
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
           return 100;
         }
-        // Accelerating progress
-        const increment = prev < 60 ? 8 : prev < 90 ? 4 : 2;
+        const increment = prev < 60 ? 15 : prev < 90 ? 10 : 5;
         return Math.min(prev + increment, 100);
       });
-    }, 40);
+    }, 30);
 
-    // Minimum display time
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1800);
+    }, 800);
 
     return () => {
       clearInterval(interval);
