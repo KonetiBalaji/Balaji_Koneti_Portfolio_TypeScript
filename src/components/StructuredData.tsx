@@ -33,7 +33,7 @@ export default function StructuredData() {
         "description":
           "Machine Learning Engineer (GenAI/RAG) with 6+ years in software engineering. Shipping production retrieval and evaluation systems on AWS. Delivered +22% retrieval relevance (P@5), P95 latency 640ms, and -31% LLM cost per request.",
         "url": baseUrl,
-        "image": `${baseUrl}/profile.jpg`,
+        "image": `${baseUrl}/profile.png`,
         "email": "balaji.koneti08@gmail.com",
         "nationality": "Indian",
         "sameAs": [

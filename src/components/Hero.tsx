@@ -275,7 +275,7 @@ export default function Hero() {
             style={{ background: 'var(--gradient-primary)' }}
           >
             <Image
-              src="/profile.jpg"
+              src="/profile.png"
               alt="Balaji Koneti - Machine Learning Engineer specializing in GenAI and RAG"
               width={288}
               height={288}
