@@ -12,7 +12,6 @@ const Contact = dynamic(() => import('@/components/Contact'));
 const Footer = dynamic(() => import('@/components/Footer'));
 const BackToTop = dynamic(() => import('@/components/BackToTop'));
 const Preloader = dynamic(() => import('@/components/Preloader'));
-const ScrollProgress = dynamic(() => import('@/components/ScrollProgress'));
 const MetricsTicker = dynamic(() => import('@/components/MetricsTicker'));
 const SpotlightCursor = dynamic(() => import('@/components/SpotlightCursor'));
 
@@ -24,7 +23,6 @@ export default function Home() {
   return (
     <>
       <Preloader />
-      <ScrollProgress />
       <SpotlightCursor />
       <NavBar />
       <main className="relative">
