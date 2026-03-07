@@ -1,125 +1,139 @@
-# Balaji.dev – Portfolio
+# Balaji.dev - ML Engineer Portfolio
 
-A modern, Apple-inspired portfolio built with Next.js, TypeScript, and Tailwind CSS. This project demonstrates a full transformation from a basic template to a visually unified, professional, and industry-standard portfolio.
+A high-performance, SEO-optimized portfolio built with **Next.js 15**, **TypeScript**, and **Tailwind CSS 4**. Designed to showcase production ML engineering work with measurable impact.
 
----
-
-## Before & After
-
-| Before (Sprint_1) | After (Current) |
-|-------------------|----------------|
-| ![Hero Before](Sprint_1/hero.png) | ![Hero After](Sprint_4/hero.png) |
-| ![About Before](Sprint_1/about.png) | ![About After](Sprint_4/about.png) |
-| ![Skills Before](Sprint_1/skills.png) | ![Skills After](Sprint_4/skills.png) |
-| ![Projects Before](Sprint_1/projects.png) | ![Projects After](Sprint_4/projects.png) |
-| ![Education Before](Sprint_1/education.png) | ![Education After](Sprint_4/education.png) |
-| ![Work Before](Sprint_1/workexperience.png) | ![Work After](Sprint_4/work.png) |
-| ![Contact Before](Sprint_1/contact.png) | ![Contact After](Sprint_4/contact.png) |
-| ![Dark Mode Before](Sprint_1/dark_mode_landing.png) | ![Dark Mode After](Sprint_4/dark_mode.png) |
+**Live:** [balajikoneti.dev](https://balajikoneti.dev)
 
 ---
 
-## 🗂️ Project Structure
+## Features
+
+### Performance
+- Server-side rendered with Next.js App Router (server components)
+- Dynamic imports and code splitting for below-the-fold sections
+- Next.js `<Image>` with AVIF/WebP optimization and responsive sizes
+- Aggressive cache headers for static assets (1 year immutable)
+- Gzip compression enabled
+- 178 kB First Load JS
+
+### SEO & Discoverability
+- Rich structured data (`@graph` with `WebSite`, `ProfilePage`, `Person` schemas)
+- Dynamic OG image generation (1200x630 branded card with metrics)
+- Twitter card with `summary_large_image`
+- Server-rendered `<h1>` with full name for crawlers
+- Proper `robots.txt` with AI bot access (GPTBot, Claude-Web, PerplexityBot)
+- Clean `sitemap.xml` with correct canonical URLs
+- `llms.txt` for AI discoverability (ChatGPT, Claude, Perplexity)
+- Google Search Console verified
+
+### UI/UX
+- Light/dark theme with system preference detection
+- Parallax hero with typing animation
+- 3D tilt cards on skills and projects
+- Animated stat counters with smart direction (up/down)
+- Scroll progress bar with spring physics
+- Auto-scrolling metrics ticker with quantified achievements
+- Spotlight cursor effect (desktop)
+- Expandable work experience cards with animated timeline
+- Responsive mobile navigation with slide-out drawer
+- `prefers-reduced-motion` support for accessibility
+
+### Security
+- `X-Content-Type-Options: nosniff`
+- `X-Frame-Options: DENY`
+- `X-XSS-Protection: 1; mode=block`
+- `Referrer-Policy: strict-origin-when-cross-origin`
+- `X-Powered-By` header removed
+
+---
+
+## Tech Stack
+
+| Layer | Technologies |
+|-------|-------------|
+| Framework | Next.js 15 (App Router, Turbopack) |
+| Language | TypeScript 5 |
+| Styling | Tailwind CSS 4, CSS custom properties |
+| Animation | Framer Motion |
+| Theming | next-themes |
+| Icons | Lucide React, React Icons |
+| Analytics | Vercel Analytics, Speed Insights |
+| Deployment | Vercel |
+
+---
+
+## Project Structure
 
 ```
-.
-├── public/
-│   └── profile.jpg, [after images]
-├── src/
-│   ├── app/
-│   ├── components/
-│   ├── styles/
-│   └── ...
-├── Sprint_1/
-│   └── [before images]
-├── tailwind.config.js
-├── package.json
-└── README.md
+src/
+  app/
+    layout.tsx              # Root layout with metadata and structured data
+    page.tsx                # Server component with dynamic imports
+    robots.ts               # SEO robots with AI bot rules
+    sitemap.ts              # Sitemap generation
+    manifest.ts             # PWA manifest
+    opengraph-image.tsx     # Dynamic OG image (edge runtime)
+    twitter-image.tsx       # Dynamic Twitter card image
+    Providers.tsx           # Theme provider (client)
+  components/
+    Hero.tsx                # Parallax hero with typing effect
+    About.tsx               # Stats with smart animated counters
+    Skills.tsx              # Bento grid with 3D tilt cards
+    Projects.tsx            # Project cards with spotlight effect
+    Education.tsx           # Timeline with university logos
+    WorkExperience.tsx      # Expandable cards with animated timeline
+    Certifications.tsx      # Certification cards with tilt effect
+    Contact.tsx             # CTA section with contact cards
+    NavBar.tsx              # Responsive nav with scroll detection
+    Footer.tsx              # Footer with social links
+    Preloader.tsx           # Loading screen
+    ScrollProgress.tsx      # Scroll progress indicator
+    MetricsTicker.tsx       # Auto-scrolling metrics marquee
+    SpotlightCursor.tsx     # Ambient cursor glow effect
+    StructuredData.tsx      # JSON-LD structured data (server)
+    BackToTop.tsx           # Scroll to top button
+    ThemeSwitcher.tsx       # Dark/light mode toggle
+  styles/
+    globals.css             # Design system tokens and utility classes
+public/
+  icons/                    # Company and university logos
+  llms.txt                  # AI crawler content file
+  profile.jpg               # Profile photo
 ```
 
 ---
 
-## 🛠️ How to Run
+## Getting Started
 
-1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-2. **Start the development server:**
-   ```bash
-   npm run dev
-   ```
-3. **Open [http://localhost:3000](http://localhost:3000) in your browser.**
+```bash
+# Install dependencies
+npm install
 
----
+# Start dev server (Turbopack)
+npm run dev
 
-## ✨ Section-by-Section Improvements
+# Production build
+npm run build
 
-### Hero Section
-- **Before:** ![Hero Before](Sprint_1/hero.png)
-- **After:** ![Hero After](Sprint_4/hero.png)
-- **Changes:**  
-  - Centered layout, larger profile image, animated gradient ring, Apple-style typography, animated intro text.
+# Start production server
+npm start
+```
 
-### About Section
-- **Before:** ![About Before](Sprint_1/about.png)
-- **After:** ![About After](Sprint_4/about.png)
-- **Changes:**  
-  - Unified card/tag styles, improved spacing, modern Apple-inspired look.
-
-### Skills Section
-- **Before:** ![Skills Before](Sprint_1/skills.png)
-- **After:** ![Skills After](Sprint_4/skills.png)
-- **Changes:**  
-  - Consistent card/tag styles, gradient overlays, hover effects, unified with Projects section.
-
-### Projects Section
-- **Before:** ![Projects Before](Sprint_1/projects.png)
-- **After:** ![Projects After](Sprint_4/projects.png)
-- **Changes:**  
-  - Apple-style cards, gradient overlays, smooth hover, unified tag/button styles, clickable project titles/icons.
-
-### Education Section
-- **Before:** ![Education Before](Sprint_1/education.png)
-- **After:** ![Education After](Sprint_4/education.png)
-- **Changes:**  
-  - Card-based layout, gradient overlays, unified tag styles, expand/collapse transitions.
-
-### Work Experience Section
-- **Before:** ![Work Before](Sprint_1/workexperience.png)
-- **After:** ![Work After](Sprint_4/work.png)
-- **Changes:**  
-  - Card-based layout, gradient overlays, unified tag styles, expand/collapse transitions.
-
-### Contact Section
-- **Before:** ![Contact Before](Sprint_1/contact.png)
-- **After:** ![Contact After](Sprint_4/contact.png)
-- **Changes:**  
-  - Minimal, clean, prominent call-to-action, gradient button, unified button size and style.
-
-### NavBar & Footer
-- **Before:** ![Dark Mode Before](Sprint_1/dark_mode_landing.png)
-- **After:** ![Dark Mode After](Sprint_4/dark_mode.png)
-- **Changes:**  
-  - Fixed, minimal NavBar, animated underline, accessible, responsive hamburger menu, consistent accent color, minimal footer.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 🧑‍💻 Tech Stack
+## Key Metrics Highlighted
 
-- Next.js 15
-- TypeScript
-- Tailwind CSS 4
-- Framer Motion
-- next-themes (dark mode)
-- Lucide React Icons
-
----
-
-## 🙏 Credits & Inspiration
-
-- Inspired by Apple.com
+| Metric | Value |
+|--------|-------|
+| Retrieval Relevance (P@5) | +22% |
+| P95 End-to-End Latency | 1.3s to 640ms |
+| LLM Cost per Request | -31% |
+| Years Engineering | 6+ |
 
 ---
 
-**Clone, run, and enjoy a truly modern, Apple-inspired portfolio!**
+## License
+
+All rights reserved. This is a personal portfolio project.
