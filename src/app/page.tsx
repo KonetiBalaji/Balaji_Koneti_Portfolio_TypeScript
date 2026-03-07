@@ -12,7 +12,6 @@ const Contact = dynamic(() => import('@/components/Contact'));
 const Footer = dynamic(() => import('@/components/Footer'));
 const BackToTop = dynamic(() => import('@/components/BackToTop'));
 const Preloader = dynamic(() => import('@/components/Preloader'));
-const MetricsTicker = dynamic(() => import('@/components/MetricsTicker'));
 const SpotlightCursor = dynamic(() => import('@/components/SpotlightCursor'));
 
 function SectionDivider() {
@@ -27,7 +26,7 @@ export default function Home() {
       <NavBar />
       <main className="relative">
         <Hero />
-        <MetricsTicker />
+        <SectionDivider />
         <About />
         <SectionDivider />
         <Skills />
