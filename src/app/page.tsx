@@ -1,17 +1,20 @@
-'use client';
-
-import Preloader from '@/components/Preloader';
+import dynamic from 'next/dynamic';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
-import Skills from '@/components/Skills';
-import Projects from '@/components/Projects';
-import Education from '@/components/Education';
-import WorkExperience from '@/components/WorkExperience';
-import Certifications from '@/components/Certifications';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
 import NavBar from '@/components/NavBar';
-import BackToTop from '@/components/BackToTop';
+
+const Skills = dynamic(() => import('@/components/Skills'));
+const Projects = dynamic(() => import('@/components/Projects'));
+const Education = dynamic(() => import('@/components/Education'));
+const WorkExperience = dynamic(() => import('@/components/WorkExperience'));
+const Certifications = dynamic(() => import('@/components/Certifications'));
+const Contact = dynamic(() => import('@/components/Contact'));
+const Footer = dynamic(() => import('@/components/Footer'));
+const BackToTop = dynamic(() => import('@/components/BackToTop'));
+const Preloader = dynamic(() => import('@/components/Preloader'));
+const ScrollProgress = dynamic(() => import('@/components/ScrollProgress'));
+const MetricsTicker = dynamic(() => import('@/components/MetricsTicker'));
+const SpotlightCursor = dynamic(() => import('@/components/SpotlightCursor'));
 
 function SectionDivider() {
   return <div className="section-divider" />;
@@ -21,10 +24,12 @@ export default function Home() {
   return (
     <>
       <Preloader />
+      <ScrollProgress />
+      <SpotlightCursor />
       <NavBar />
       <main className="relative">
         <Hero />
-        <SectionDivider />
+        <MetricsTicker />
         <About />
         <SectionDivider />
         <Skills />
