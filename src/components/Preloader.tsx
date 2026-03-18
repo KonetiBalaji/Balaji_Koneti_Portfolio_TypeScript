@@ -8,15 +8,15 @@ export default function Preloader() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    let progressValue = 0;
     const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          return 100;
-        }
-        const increment = prev < 60 ? 15 : prev < 90 ? 10 : 5;
-        return Math.min(prev + increment, 100);
-      });
+      if (progressValue >= 100) {
+        clearInterval(interval);
+        return;
+      }
+      const increment = progressValue < 60 ? 15 : progressValue < 90 ? 10 : 5;
+      progressValue = Math.min(progressValue + increment, 100);
+      setProgress(progressValue);
     }, 30);
 
     const timer = setTimeout(() => {

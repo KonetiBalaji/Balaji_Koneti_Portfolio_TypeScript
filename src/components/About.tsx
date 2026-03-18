@@ -23,13 +23,20 @@ function useSmartCounter(from: number, to: number, duration: number = 2200) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting && !hasStarted) setHasStarted(true); },
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasStarted(true);
+          observer.disconnect();
+        }
+      },
       { threshold: 0.3 }
     );
-    if (ref.current) observer.observe(ref.current);
+    observer.observe(el);
     return () => observer.disconnect();
-  }, [hasStarted]);
+  }, []);
 
   useEffect(() => {
     if (!hasStarted) return;
@@ -95,7 +102,7 @@ const highlights = [
 function StatCard({ stat, index }: { stat: typeof stats[0]; index: number }) {
   const Icon = stat.icon;
   const { ref, value } = useSmartCounter(stat.from, stat.to, 2400);
-  const isDown = stat.direction === 'down';
+  const isDown = stat.from > stat.to;
 
   return (
     <motion.div
@@ -159,15 +166,13 @@ function StatCard({ stat, index }: { stat: typeof stats[0]; index: number }) {
 }
 
 export default function About() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
   return (
     <section
       id="about"
       className="relative py-24 lg:py-32"
       style={{ background: 'var(--color-bg)' }}
     >
-      <div className="section-container" ref={sectionRef}>
+      <div className="section-container">
         <motion.div
           variants={stagger}
           initial="hidden"
@@ -229,9 +234,9 @@ export default function About() {
 
               {/* Tags */}
               <div className="flex flex-wrap gap-2.5">
-                {highlights.map((tag, idx) => (
+                {highlights.map((tag) => (
                   <motion.span
-                    key={idx}
+                    key={tag}
                     variants={fadeUp}
                     className="tag"
                     whileHover={{ scale: 1.06, y: -2 }}
@@ -249,7 +254,7 @@ export default function About() {
               className="lg:col-span-2 grid grid-cols-2 gap-4"
             >
               {stats.map((stat, idx) => (
-                <StatCard key={idx} stat={stat} index={idx} />
+                <StatCard key={stat.label} stat={stat} index={idx} />
               ))}
             </motion.div>
           </div>

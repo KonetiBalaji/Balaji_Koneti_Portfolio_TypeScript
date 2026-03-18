@@ -3,8 +3,6 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Calendar, MapPin } from 'lucide-react';
-import nauLogo from '../../public/icons/nau.png';
-import jntuLogo from '../../public/icons/jntu.png';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -29,7 +27,7 @@ export const educationData = [
       'Deep focus on ML evaluation, model interpretability, and NLP/LLM systems',
       'Built reusable SHAP/LIME notebooks adopted as course-wide standard',
     ],
-    logo: nauLogo,
+    logo: '/icons/nau.png',
   },
   {
     id: 'jntu-btech',
@@ -43,7 +41,7 @@ export const educationData = [
       'Active in hackathons and technical competitions',
       'Executive Body Member of Computer Society of India (CSI)',
     ],
-    logo: jntuLogo,
+    logo: '/icons/jntu.png',
   },
 ];
 
@@ -169,7 +167,7 @@ export default function Education() {
 
                       <ul className="space-y-2 mb-5">
                         {item.details.map((detail, idx) => (
-                          <li key={idx} className="flex items-start gap-2.5">
+                          <li key={detail} className="flex items-start gap-2.5">
                             <span
                               className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0"
                               style={{ background: 'var(--color-accent)' }}
@@ -184,7 +182,7 @@ export default function Education() {
                       <div className="flex flex-wrap gap-2">
                         {item.tags.map((tag, i) => (
                           <span
-                            key={i}
+                            key={tag}
                             className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-medium"
                             style={{
                               background: 'var(--color-bg-secondary)',
