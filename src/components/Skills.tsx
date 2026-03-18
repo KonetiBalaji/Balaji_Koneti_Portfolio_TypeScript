@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useRef, useCallback } from 'react';
+import { useTilt } from './hooks/useTilt';
 import {
   Code2,
   Brain,
@@ -80,27 +80,7 @@ function TiltCard({ children, className, style }: {
   className?: string;
   style?: React.CSSProperties;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      if (!ref.current) return;
-      const rect = ref.current.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -6;
-      const rotateY = ((x - centerX) / centerX) * 6;
-      ref.current.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-    },
-    []
-  );
-
-  const handleMouseLeave = useCallback(() => {
-    if (!ref.current) return;
-    ref.current.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-  }, []);
+  const { ref, handleMouseMove, handleMouseLeave } = useTilt({ maxTilt: 6, scale: 1.02, perspective: 800 });
 
   return (
     <div
@@ -168,7 +148,7 @@ export default function Skills() {
               const isWide = idx === 1 || idx === 4;
               return (
                 <motion.div
-                  key={idx}
+                  key={group.category}
                   variants={fadeUp}
                   className={isWide ? 'sm:col-span-2' : ''}
                 >
@@ -211,7 +191,7 @@ export default function Skills() {
                     <div className="flex flex-wrap gap-2 relative z-10">
                       {group.items.map((skill, i) => (
                         <motion.span
-                          key={i}
+                          key={skill}
                           className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-medium"
                           style={{
                             background: 'var(--color-bg-secondary)',

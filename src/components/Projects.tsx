@@ -1,9 +1,9 @@
 'use client';
 
-import { FaGithub } from 'react-icons/fa';
 import { motion } from 'framer-motion';
-import { useRef, useCallback } from 'react';
-import { ArrowUpRight, Bot, ShieldCheck } from 'lucide-react';
+import { useRef } from 'react';
+import { ArrowUpRight, Bot, ShieldCheck, Github } from 'lucide-react';
+import { useTilt } from './hooks/useTilt';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -56,35 +56,25 @@ function ProjectTiltCard({ children, className, style }: {
   className?: string;
   style?: React.CSSProperties;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const { ref, handleMouseMove: tiltMove, handleMouseLeave: tiltLeave } = useTilt({
+    maxTilt: 3, scale: 1.01, perspective: 1200, speed: 500,
+  });
+  const spotlightRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      if (!ref.current) return;
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    tiltMove(e);
+    if (spotlightRef.current && ref.current) {
       const rect = ref.current.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -3;
-      const rotateY = ((x - centerX) / centerX) * 3;
-      ref.current.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
+      spotlightRef.current.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(59, 130, 246, 0.06), transparent 40%)`;
+    }
+  };
 
-      // Move the spotlight
-      const spotlight = ref.current.querySelector('.spotlight') as HTMLElement;
-      if (spotlight) {
-        spotlight.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(59, 130, 246, 0.06), transparent 40%)`;
-      }
-    },
-    []
-  );
-
-  const handleMouseLeave = useCallback(() => {
-    if (!ref.current) return;
-    ref.current.style.transform = 'perspective(1200px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-    const spotlight = ref.current.querySelector('.spotlight') as HTMLElement;
-    if (spotlight) spotlight.style.background = 'transparent';
-  }, []);
+  const handleMouseLeave = () => {
+    tiltLeave();
+    if (spotlightRef.current) spotlightRef.current.style.background = 'transparent';
+  };
 
   return (
     <div
@@ -94,7 +84,7 @@ function ProjectTiltCard({ children, className, style }: {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="spotlight absolute inset-0 pointer-events-none rounded-2xl z-0 transition-all duration-300" />
+      <div ref={spotlightRef} className="absolute inset-0 pointer-events-none rounded-2xl z-0 transition-all duration-300" />
       {children}
     </div>
   );
@@ -148,7 +138,7 @@ export default function Projects() {
             {projects.map((project, i) => {
               const Icon = project.icon;
               return (
-                <motion.div key={i} variants={fadeUp}>
+                <motion.div key={project.title} variants={fadeUp}>
                   <ProjectTiltCard
                     className="group relative rounded-2xl p-8 sm:p-10 overflow-hidden cursor-pointer"
                     style={{
@@ -206,7 +196,7 @@ export default function Projects() {
                             {project.title}
                           </h3>
                           <div className="flex items-center gap-2 flex-shrink-0 opacity-60 group-hover:opacity-100 transition-all duration-500">
-                            <FaGithub className="w-5 h-5" style={{ color: 'var(--color-text-secondary)' }} />
+                            <Github className="w-5 h-5" style={{ color: 'var(--color-text-secondary)' }} />
                             <ArrowUpRight
                               className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-500"
                               style={{ color: 'var(--color-text-secondary)' }}
@@ -228,7 +218,7 @@ export default function Projects() {
                         {/* Impact bullets */}
                         <ul className="space-y-1.5 mb-5">
                           {project.impact.map((item, idx) => (
-                            <li key={idx} className="flex items-start gap-2">
+                            <li key={item} className="flex items-start gap-2">
                               <motion.span
                                 className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0"
                                 style={{ background: project.color }}
@@ -244,7 +234,7 @@ export default function Projects() {
                         <div className="flex flex-wrap gap-2">
                           {project.tags.map((tag, idx) => (
                             <span
-                              key={idx}
+                              key={tag}
                               className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-medium transition-colors duration-300"
                               style={{
                                 background: 'var(--color-accent-light)',

@@ -6,13 +6,19 @@ interface UseTiltOptions {
   maxTilt?: number;
   scale?: number;
   speed?: number;
+  perspective?: number;
 }
 
-export function useTilt({ maxTilt = 8, scale = 1.02, speed = 400 }: UseTiltOptions = {}) {
-  const ref = useRef<HTMLDivElement>(null);
+export function useTilt<T extends HTMLElement = HTMLDivElement>({
+  maxTilt = 8,
+  scale = 1.02,
+  speed = 400,
+  perspective = 1000,
+}: UseTiltOptions = {}) {
+  const ref = useRef<T>(null);
 
   const handleMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
+    (e: React.MouseEvent<T>) => {
       if (!ref.current) return;
       const rect = ref.current.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -22,17 +28,17 @@ export function useTilt({ maxTilt = 8, scale = 1.02, speed = 400 }: UseTiltOptio
       const rotateX = ((y - centerY) / centerY) * -maxTilt;
       const rotateY = ((x - centerX) / centerX) * maxTilt;
 
-      ref.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${scale}, ${scale}, ${scale})`;
+      ref.current.style.transform = `perspective(${perspective}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${scale}, ${scale}, ${scale})`;
       ref.current.style.transition = `transform ${speed * 0.1}ms ease`;
     },
-    [maxTilt, scale, speed]
+    [maxTilt, scale, speed, perspective]
   );
 
   const handleMouseLeave = useCallback(() => {
     if (!ref.current) return;
-    ref.current.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+    ref.current.style.transform = `perspective(${perspective}px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
     ref.current.style.transition = `transform ${speed}ms ease`;
-  }, [speed]);
+  }, [speed, perspective]);
 
   return { ref, handleMouseMove, handleMouseLeave };
 }

@@ -1,25 +1,23 @@
 'use client';
 
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { SiCredly } from 'react-icons/si';
-import { ArrowUp } from 'lucide-react';
+import { ArrowUp, Github, Linkedin, Award } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const socialLinks = [
   {
     label: 'LinkedIn',
     href: 'https://www.linkedin.com/in/BalajiKoneti/',
-    icon: FaLinkedin,
+    icon: Linkedin,
   },
   {
     label: 'GitHub',
     href: 'https://github.com/KonetiBalaji',
-    icon: FaGithub,
+    icon: Github,
   },
   {
     label: 'Credly',
     href: 'https://www.credly.com/users/balaji-koneti/',
-    icon: SiCredly,
+    icon: Award,
   },
 ];
 
