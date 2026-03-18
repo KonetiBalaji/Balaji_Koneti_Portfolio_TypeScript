@@ -17,9 +17,9 @@ const stagger = {
 
 export const workData = [
   {
-    id: 'progress-mle',
+    id: 'nordstrom-mle',
     role: 'Machine Learning Engineer',
-    company: 'Progress Solutions',
+    company: 'Nordstrom',
     location: 'Plano, TX',
     period: 'Jun 2025 – Present',
     logo: null,
@@ -119,7 +119,7 @@ function AnimatedTimeline() {
 }
 
 export default function WorkExperience() {
-  const [expandedId, setExpandedId] = useState<string | null>('progress-mle');
+  const [expandedId, setExpandedId] = useState<string | null>('nordstrom-mle');
 
   const toggleExpand = (id: string) => {
     setExpandedId(expandedId === id ? null : id);
@@ -293,6 +293,9 @@ export default function WorkExperience() {
 
                         {/* Expandable details */}
                         <motion.div
+                          id={`${item.id}-details`}
+                          role="region"
+                          aria-labelledby={`${item.id}-toggle`}
                           initial={false}
                           animate={{
                             height: isExpanded ? 'auto' : 0,
@@ -304,7 +307,7 @@ export default function WorkExperience() {
                           <ul className="space-y-2.5 mb-5 pt-4" style={{ borderTop: '1px solid var(--color-border)' }}>
                             {item.details.map((detail, idx) => (
                               <motion.li
-                                key={idx}
+                                key={detail}
                                 className="flex items-start gap-2.5"
                                 initial={{ opacity: 0, x: -10 }}
                                 animate={isExpanded ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
@@ -327,7 +330,7 @@ export default function WorkExperience() {
                           <div className="flex flex-wrap gap-2">
                             {item.tags.map((tag, i) => (
                               <span
-                                key={i}
+                                key={tag}
                                 className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300"
                                 style={{
                                   background: 'var(--color-bg-secondary)',
@@ -340,6 +343,9 @@ export default function WorkExperience() {
                             ))}
                           </div>
                           <motion.button
+                            id={`${item.id}-toggle`}
+                            aria-expanded={isExpanded}
+                            aria-controls={`${item.id}-details`}
                             onClick={() => toggleExpand(item.id)}
                             className="flex items-center gap-1 text-xs font-medium transition-colors duration-300"
                             style={{ color: 'var(--color-accent)' }}

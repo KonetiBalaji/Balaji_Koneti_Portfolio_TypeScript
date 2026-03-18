@@ -149,7 +149,7 @@ export default function StructuredData() {
         ],
         "worksFor": {
           "@type": "Organization",
-          "name": "Progress Solutions",
+          "name": "Nordstrom",
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Plano",

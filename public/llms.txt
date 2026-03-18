@@ -18,7 +18,7 @@
 
 Balaji Koneti is a Machine Learning Engineer specializing in Generative AI and
 Retrieval-Augmented Generation (RAG) with 6+ years of software engineering
-experience. He currently works at Progress Solutions in Plano, TX, where he
+experience. He currently works at Nordstrom in Plano, TX, where he
 designs and ships production RAG services on AWS.
 
 Key measurable achievements:
@@ -43,7 +43,7 @@ Key measurable achievements:
 
 ## Work Experience
 
-### Machine Learning Engineer - Progress Solutions (Jun 2025 - Present)
+### Machine Learning Engineer - Nordstrom (Jun 2025 - Present)
 - Led design and rollout of production RAG services using LangChain & pgvector
 - Improved retrieval relevance by 22% (P@5) via semantic/recursive chunking and hybrid retrieval
 - Cut P95 latency from 1.3s to 640ms via service separation, Redis caching, and embedding batching
