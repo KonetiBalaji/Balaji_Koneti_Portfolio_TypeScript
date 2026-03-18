@@ -1,8 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useRef, useCallback } from 'react';
 import { Calendar, ExternalLink } from 'lucide-react';
+import { useTilt } from './hooks/useTilt';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -41,36 +41,22 @@ const certifications = [
   },
 ];
 
-function CertTiltCard({ children, className, style }: {
+function CertTiltCard({ children, className, style, href }: {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
+  href?: string;
 }) {
-  const ref = useRef<HTMLAnchorElement>(null);
-
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (!ref.current) return;
-      const rect = ref.current.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -8;
-      const rotateY = ((x - centerX) / centerX) * 8;
-      ref.current.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
-    },
-    []
-  );
-
-  const handleMouseLeave = useCallback(() => {
-    if (!ref.current) return;
-    ref.current.style.transform = 'perspective(600px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-  }, []);
+  const { ref, handleMouseMove, handleMouseLeave } = useTilt<HTMLAnchorElement>({
+    maxTilt: 8, scale: 1.03, perspective: 600,
+  });
 
   return (
     <a
       ref={ref}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
       className={className}
       style={{ ...style, transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease' }}
       onMouseMove={handleMouseMove}
@@ -129,9 +115,10 @@ export default function Certifications() {
             variants={stagger}
             className="grid grid-cols-1 sm:grid-cols-3 gap-5"
           >
-            {certifications.map((cert, idx) => (
-              <motion.div key={idx} variants={fadeUp}>
+            {certifications.map((cert) => (
+              <motion.div key={cert.name} variants={fadeUp}>
                 <CertTiltCard
+                  href={cert.credlyUrl}
                   className="group card-shine rounded-2xl p-6 sm:p-7 flex flex-col gap-4 relative overflow-hidden block cursor-pointer"
                   style={{
                     background: 'var(--color-surface)',
@@ -161,6 +148,7 @@ export default function Certifications() {
                       {cert.badge}
                     </motion.div>
                     <ExternalLink
+                      aria-hidden="true"
                       className="w-4 h-4 opacity-0 group-hover:opacity-60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300"
                       style={{ color: 'var(--color-text-tertiary)' }}
                     />

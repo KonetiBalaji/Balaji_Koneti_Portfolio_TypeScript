@@ -85,22 +85,24 @@ export default function Hero() {
   const opacitySection = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   useEffect(() => {
+    let intervalId: ReturnType<typeof setInterval> | undefined;
     const preloaderDelay = setTimeout(() => {
       let currentIndex = 0;
-      const interval = setInterval(() => {
+      intervalId = setInterval(() => {
         if (currentIndex <= fullText.length) {
           setText(fullText.slice(0, currentIndex));
           currentIndex++;
         } else {
-          clearInterval(interval);
-          setTimeout(() => setShowCursor(true), 200);
+          clearInterval(intervalId);
+          intervalId = undefined;
         }
       }, 70);
-
-      return () => clearInterval(interval);
     }, 900);
 
-    return () => clearTimeout(preloaderDelay);
+    return () => {
+      clearTimeout(preloaderDelay);
+      if (intervalId) clearInterval(intervalId);
+    };
   }, []);
 
   return (

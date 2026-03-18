@@ -10,7 +10,17 @@ export default function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
-  if (!mounted) return <div className="w-9 h-9" />;
+  if (!mounted) {
+    return (
+      <div
+        className="w-9 h-9 rounded-xl"
+        style={{
+          background: 'var(--color-bg-secondary)',
+          border: '1px solid var(--color-border)',
+        }}
+      />
+    );
+  }
 
   const isDark = resolvedTheme === 'dark';
 
