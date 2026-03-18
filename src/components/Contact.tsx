@@ -110,11 +110,11 @@ export default function Contact() {
             variants={stagger}
             className="grid grid-cols-1 sm:grid-cols-3 gap-4"
           >
-            {contactLinks.map((link, idx) => {
+            {contactLinks.map((link) => {
               const Icon = link.icon;
               return (
                 <motion.a
-                  key={idx}
+                  key={link.label}
                   href={link.href}
                   target={link.href.startsWith('mailto') ? undefined : '_blank'}
                   rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
@@ -134,6 +134,7 @@ export default function Contact() {
                       <Icon className="w-5 h-5" style={{ color: 'var(--color-accent)' }} />
                     </div>
                     <ArrowUpRight
+                      aria-hidden="true"
                       className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300"
                       style={{ color: 'var(--color-text-tertiary)' }}
                     />
