@@ -1,18 +1,25 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowUp } from 'lucide-react';
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false);
+  const rafRef = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setVisible(window.scrollY > 500);
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(() => {
+        setVisible(window.scrollY > 500);
+      });
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(rafRef.current);
+    };
   }, []);
 
   return (

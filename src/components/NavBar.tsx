@@ -1,7 +1,7 @@
 'use client';
 
 import ThemeSwitcher from './ThemeSwitcher';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import {
   Home,
@@ -31,40 +31,53 @@ export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
-  // Scroll-based active detection + hide on scroll down
-  const handleScroll = useCallback(() => {
-    const currentY = window.scrollY;
-
-    // Show/hide based on direction
-    if (currentY > lastScrollY && currentY > 100) {
-      setHidden(true);
-    } else {
-      setHidden(false);
-    }
-    setLastScrollY(currentY);
-
-    // Scrolled state for glass effect
-    setScrolled(currentY > 20);
-
-    // Active section
-    const offsets = navItems.map(({ href }) => {
-      const el = document.querySelector(href);
-      if (!el) return { name: '', top: Infinity };
-      const rect = (el as HTMLElement).getBoundingClientRect();
-      return { name: href, top: Math.abs(rect.top - 100) };
-    });
-    const closest = offsets.reduce((a, b) => (a.top < b.top ? a : b));
-    const found = navItems.find((item) => item.href === closest.name);
-    if (found) setActive(found.name);
-  }, [lastScrollY]);
+  const lastScrollYRef = useRef(0);
+  const rafIdRef = useRef(0);
+  const sectionElsRef = useRef<(Element | null)[]>([]);
 
   useEffect(() => {
+    // Cache section elements once on mount
+    sectionElsRef.current = navItems.map(({ href }) => document.querySelector(href));
+
+    const handleScroll = () => {
+      cancelAnimationFrame(rafIdRef.current);
+      rafIdRef.current = requestAnimationFrame(() => {
+        const currentY = window.scrollY;
+
+        // Show/hide based on direction
+        if (currentY > lastScrollYRef.current && currentY > 100) {
+          setHidden(true);
+        } else {
+          setHidden(false);
+        }
+        lastScrollYRef.current = currentY;
+
+        // Scrolled state for glass effect
+        setScrolled(currentY > 20);
+
+        // Active section
+        let closestName = '';
+        let closestDist = Infinity;
+        for (let i = 0; i < navItems.length; i++) {
+          const el = sectionElsRef.current[i];
+          if (!el) continue;
+          const dist = Math.abs(el.getBoundingClientRect().top - 100);
+          if (dist < closestDist) {
+            closestDist = dist;
+            closestName = navItems[i].name;
+          }
+        }
+        if (closestName) setActive(closestName);
+      });
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(rafIdRef.current);
+    };
+  }, []);
 
   // Close menu on ESC
   useEffect(() => {
